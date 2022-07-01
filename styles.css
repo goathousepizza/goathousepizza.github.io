@@ -241,8 +241,23 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 }
 
 .section-header {
+    text-align: center;
+    padding: 32px;
     font-size: 2em;
     color: #be3b2c;
+}
+
+.div-large {
+    font-size: 18px;
+    background-color: #fdf5e6;
+    color: #000;
+}
+
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("/images/dimmer.jpg");
+    min-height: 80%;
 }
 
 .page-header {
@@ -277,4 +292,10 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     padding-top: 48px;
     padding-bottom: 48px;
     font-size: 18px;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 980px;
 }
