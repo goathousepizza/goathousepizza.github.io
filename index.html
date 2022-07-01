@@ -1,16 +1,130 @@
 <!DOCTYPE html>
-<html lang="english">
-
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
 	<title>GoatHouse Brick Oven Pizza</title>
-	<!--<link href="style.css" rel="stylesheet" type="text/css" />-->
-</head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="w3template.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="icon" href="/images/favicon.png">
+	<style>
+		body, html {
+			height: 100%;
+			font-family: "Lato", sans-serif;
+		}
 
+		.bgimg {
+			background-position: center;
+			background-size: cover;
+			background-image: url("/images/dimmer.jpg");
+			min-height: 85%;
+		}
+
+		.menu {
+			display: none;
+		}
+	</style>
+</head>
 <body>
-Website coming soon cabrones...
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+	<div class="w3-row w3-padding w3-black">
+		<div class="w3-col s2">
+			<a href="#" class="w3-button w3-block w3-black">Home</a>
+		</div>
+		<div class="w3-col s2">
+			<a href="#menu" class="w3-button w3-block w3-black">Menu</a>
+		</div>
+		<div class="w3-col s2">
+			<a href="https://instagram.com/goathousepizza" target="_blank" class="w3-button w3-block w3-black"><b>GoatHouse Brick Oven Pizza</b></a>
+		</div>
+		<div class="w3-col s2">
+			<a href="#about" class="w3-button w3-block w3-black">About</a>
+		</div>
+		<div class="w3-col s2">
+			<a href="#where" class="w3-button w3-block w3-black">Contact Us</a>
+		</div>
+	</div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg page-header" id="home">
+	<div class="w3-display-middle w3-center">
+		<span class="w3-text-white" style="font-size:5em"><b>Brick Oven Pizza Made Fresh For You</b></span>
+	</div>
+	<button onclick="window.location.href = '/order.html'" class="order-button"><b>ORDER NOW</b></button>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-large">
+
+	<!-- Menu Container -->
+	<div class="w3-container" id="menu" style="text-align: center">
+		<img src="/images/goathousepizzamenu-04%20(1).png" style="width:100%;max-width:1000px;margin-top:32px" alt="Image not found.">
+	</div>
+
+	<!-- About Container -->
+	<div class="w3-container" id="about" style="text-align: center">
+		<div class="w3-content" style="max-width:1250px">
+			<h5 class="w3-center w3-padding-32 section-header"><b>About the GoatHouse</b></h5>
+			<div class="about-us-section">
+				<h2>The GoatHouse</h2>
+				<p>It all started one dreary Wednesday evening at the GoatHouse (residence of the Goats in Provo, Utah). Creativity and boredom, the deadliest combo other than our pizza and Goat Horns, stepped in and gave them an idea - pizza.</p>
+			</div>
+			<div class="about-us-section">
+				<h2>Cooking Origins</h2>
+				<p>The Goats began by purchasing a slew of bricks and in no time at all, they had constructed a makeshift oven. That oven is now running at triple capacity and is ready to serve you the freshest brick oven pizza this side of the Mississippi.</p>
+			</div>
+			<div class="about-us-section">
+				<h2>Order Today</h2>
+				<p>Open every weekend, GoatHouse Brick Oven Pizza boasts the best homemade pizzas and friendliest service staff around! Start your order using the button above and see you at the Goat House!</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Contact/Area Container -->
+	<div class="w3-container" id="where" style="padding-bottom:32px;">
+		<div class="w3-content" style="max-width:700px">
+			<h5 class="w3-center w3-padding-48 section-header"><b>Contact Us</b></h5>
+			<p>Find us at some address at some place.</p>
+			<p><span class="w3-tag">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
+			<p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
+			<form action="/action_page.php" target="_blank">
+				<p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+				<p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="How many people" required name="People"></p>
+				<p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+				<p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
+				<p><button class="w3-button w3-black" type="submit">SEND MESSAGE</button></p>
+			</form>
+		</div>
+	</div>
+
+	<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+	<p>Copyright © 2022 GoatHouse Brick Oven Pizza - All Rights Reserved.</p>
+</footer>
+
+<script>
+	// Tabbed Menu
+	function openMenu(evt, menuName) {
+		var i, x, tablinks;
+		x = document.getElementsByClassName("menu");
+		for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablink");
+		for (i = 0; i < x.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+		}
+		document.getElementById(menuName).style.display = "block";
+		evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+	}
+	document.getElementById("myLink").click();
+</script>
 
 </body>
-
 </html>
