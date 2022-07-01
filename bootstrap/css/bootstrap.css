@@ -367,7 +367,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-  font-size: calc(2.2rem + 2.8vw);
+  font-size: calc(2.7rem + 2.5vw);
 }
 
 h2, .h2 {
