@@ -29,7 +29,7 @@
     text-align: center;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
-    font-size: calc(40px + 20 * ((100vw - 320px) / 680));
+    font-size: calc(40px + 23 * ((30vw - 320px) / 680));
 }
 
 .div-large {
