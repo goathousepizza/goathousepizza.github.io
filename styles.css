@@ -30,7 +30,7 @@
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     /* font-size: calc(60px + 23 * ((30vw - 320px) / 680)); */
-    width: 80vw;
+    width: 90vw;
 }
 
 .div-large {
