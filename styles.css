@@ -2,6 +2,7 @@
     display: inline-block;
     width: 370px;
     padding: 10px;
+    vertical-align: top;
 }
 
 .bgimg {
@@ -102,7 +103,7 @@
 
 .section-header {
     text-align: center;
-    padding: 32px;
+    padding: 52px;
     font-size: 2em;
     color: #be3b2c;
 }
