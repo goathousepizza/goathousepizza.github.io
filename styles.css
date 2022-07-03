@@ -7,7 +7,7 @@
 .bgimg {
     background-position: center;
     background-size: cover;
-    background-image: url("/images/dimmerwords1.jpg");
+    background-image: url("/images/dimmer.jpg");
     min-height: 80%;
 }
 
@@ -29,6 +29,7 @@
     text-align: center;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
+    font-size: calc(40px + 20 * ((100vw - 320px) / 680));
 }
 
 .div-large {
