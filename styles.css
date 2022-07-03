@@ -29,7 +29,8 @@
     text-align: center;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
-    font-size: calc(60px + 23 * ((30vw - 320px) / 680));
+    /* font-size: calc(60px + 23 * ((30vw - 320px) / 680)); */
+    font-size: 5vw;
 }
 
 .div-large {
