@@ -75,6 +75,7 @@
 .nav-button:hover {
     color: #000;
     background-color: #ccc;
+    transition: .8s;
 }
 
 .order-button {
