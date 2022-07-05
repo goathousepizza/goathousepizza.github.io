@@ -15,8 +15,12 @@
 			scroll-behavior: smooth;
 		}
 	</style>
+
+
 </head>
 <body>
+
+
 
 <!-- Links (sit on top) -->
 <div class="div-top">
@@ -38,17 +42,17 @@
 
 <!-- Header with image -->
 <header class="bgimg page-header" id="home">
-	<div class="card-title">
-		<p style="color:#fff;font-size:48px;"><b>Brick Oven Pizza<br>Made Fresh For You</b></p>
+	<div class="card-title" id="header-text" style="color:#fff;">
+		<p><b>Brick Oven Pizza<br>Made Fresh For You</b></p>
 	</div>
 	<button onclick="window.location.href = '/order.html'" class="order-button"><b>ORDER NOW</b></button>
 </header>
 
 <!-- Add a background color and large text to the whole page -->
-<div class="div-large">
+<div class="div-large" id="menu">
 
 	<!-- Menu Container -->
-	<div id="menu" style="text-align: center">
+	<div style="text-align: center">
 		<img src="/images/goathousepizzamenu-04%20(1).png" style="width:100%;max-width:1000px;margin-top:32px" alt="Image not found.">
 	</div>
 
@@ -97,6 +101,20 @@
 <footer class="footer">
 	<p>Copyright © 2022 GoatHouse Brick Oven Pizza - All Rights Reserved.</p>
 </footer>
+
+<script>
+
+	resizeHeaderText();
+	window.onresize = function() {resizeHeaderText()};
+	function resizeHeaderText() {
+		if (window.innerWidth < 1080) {
+			document.getElementById("header-text").style.fontSize = "300%";
+		} else {
+			document.getElementById("header-text").style.fontSize = "400%";
+		}
+	}
+
+</script>
 
 </body>
 </html>
