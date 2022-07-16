@@ -4,10 +4,12 @@
     <title>GoatHouse Pizza - Order</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="icon" href="/images/favicon.png">
+    <script src="jquery.js"></script>
     <style>
         body, html {
             height: 100%;
@@ -15,12 +17,123 @@
             scroll-behavior: smooth;
         }
     </style>
-
-
 </head>
 <body>
 
-Coming Soon
+<!-- THE WHOLE PAGE -->
+<div class="large-bg-img">
 
+    <div id="title" class="bg-header"><b>START YOUR ORDER</b></div>
+
+    <!-- LIST OF MENU ITEMS -->
+    <div style="margin:auto;height:520px;overflow-y:auto" id="list-group">
+
+    <!-- SINGLE COMBO -->
+    <div class="collapsible">
+        <div class="menu-description"><span class="menu-item">SINGLE COMBO</span><p>1 GoatHouse Pizza, 3 GoatHorns, and a drink</p></div>
+        <div id="img1" class="dropdown-icon"></div>
+    </div>
+    <div class="coll-content">
+        <div class="selector-pizza">
+            <!-- TODO: pictures and labels of pizza -->
+        </div>
+        <div class="selector-drink">
+            <!-- TODO: select drink from drop-down -->
+        </div>
+        <div class="add-order">
+            <!-- TODO: price and add to order button -->
+        </div>
+    </div>
+
+    <!-- DOUBLE COMBO -->
+    <div class="collapsible">
+        <div class="menu-description"><span class="menu-item">DOUBLE COMBO</span><p>2 GoatHouse Pizzas, 6 GoatHorns, and 2 drinks</p></div>
+        <div class="dropdown-icon"></div>
+    </div>
+    <div class="coll-content">
+        test
+    </div>
+
+    <!-- A LA CARTE -->
+    <div class="collapsible">
+        <div class="menu-description"><span class="menu-item">A LA CARTE ITEMS</span><p>Items sold individually</p></div>
+        <div class="dropdown-icon"></div>
+    </div>
+    <div class="coll-content">
+        test
+    </div>
+
+    <!-- VIEW ORDER -->
+    <div class="collapsible">
+        <div class="menu-description"><span class="menu-item">VIEW ORDER / CHECKOUT</span></div>
+        <div class="dropdown-icon"></div>
+    </div>
+    <div class="coll-content">
+        test
+    </div>
+
+    </div>
+
+</div>
+<footer class="footer">
+    <p>Copyright © 2022 GoatHouse Brick Oven Pizza - All Rights Reserved.<br><a href="index.html">Return Home</a></p>
+</footer>
+<script>
+    // HANDLE THE COLLAPSIBLE LIST
+    const coll = document.getElementsByClassName("collapsible");
+    const images = document.getElementsByClassName("dropdown-icon");
+    let i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            const content = this.nextElementSibling;
+            let image = this.lastElementChild;
+            // If it is open, close it
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                image.setAttribute("style","background-image:url(\"/images/chevron-down.svg\")");
+            } else {    // If it is closed, open it and close all others
+                // Close every collapsible
+                const details = document.getElementsByClassName("coll-content");
+                let j;
+                for (j = 0; j < details.length; j++) {
+                    if (details[j].style.maxHeight) {
+                        details[j].style.maxHeight = null;
+                    }
+                    images[j].setAttribute("style","background-image:url(\"/images/chevron-down.svg\")");
+                }
+                // Open the one that is clicked on
+                content.style.maxHeight = content.scrollHeight + "px";
+                image.setAttribute("style","background-image:url(\"/images/chevron-up.svg\")");
+            }
+        });
+    }
+</script>
+<script>
+    // HANDLE THE RESIZING BASED ON SCREEN WIDTH
+    resize();
+    window.onresize = function() {resize()};
+    function resize() {
+        const menu_items = document.getElementsByClassName("menu-item");
+        const menu_descriptions = document.getElementsByClassName("menu-description");
+        let i;
+
+        if (window.innerWidth < 800) {
+            document.getElementById("list-group").style.width = "80%";
+            document.getElementById("title").style.fontSize = "30px";
+            for (i = 0; i < menu_items.length; i++) {
+                menu_items[i].style.fontSize = "21px";
+                menu_descriptions[i].style.fontSize = "12px";
+            }
+        } else {
+            document.getElementById("list-group").style.width = "50%";
+            document.getElementById("title").style.fontSize = "48px";
+            for (i = 0; i < menu_items.length; i++) {
+                menu_items[i].style.fontSize = "26px";
+                menu_descriptions[i].style.fontSize = "14px";
+            }
+        }
+    }
+</script>
 </body>
 </html>

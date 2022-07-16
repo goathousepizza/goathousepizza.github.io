@@ -1,3 +1,15 @@
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+}
+
 .about-us-section {
     display: inline-block;
     width: 370px;
@@ -5,11 +17,60 @@
     vertical-align: top;
 }
 
+.add-order {
+    height: 80px;
+    width: 400px;
+    border: solid black 1px;
+    margin: 5px;
+}
+
 .bgimg {
     background-position: center;
     background-size: cover;
     background-image: url("/images/dimmer.jpg");
     min-height: 80%;
+}
+
+.bg-header {
+    /*font-size: 48px;*/
+    padding: 20px 0;
+    background-color: rgba(190, 59, 44, .7);
+    margin-bottom: 40px;
+    text-align: center;
+    color: white;
+}
+
+.coll-content {
+    padding: 0 12px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: rgba(200, 200, 200, .7);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.collapsible {
+    background-color: rgba(0,0,0,.5);
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 10px;
+    border: solid black 2px;
+    width: 100%;
+    height: 90px;
+    margin: 7px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.collapsible:hover {
+    background-color: rgba(0,0,0,.3);
 }
 
 .column {
@@ -30,7 +91,6 @@
     text-align: center;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
-    /* font-size: calc(60px + 23 * ((30vw - 320px) / 680)); */
     width: 90vw;
 }
 
@@ -48,13 +108,47 @@
     top: 0;
 }
 
+.drink-order {
+    height: 300px;
+    width: 300px;
+    border: solid black 1px;
+    margin: 5px;
+}
+
+.dropdown-icon {
+    background-image: url("/images/chevron-down.svg");
+    width: 60px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
 .footer {
     text-align: center;
-    color: #000;
-    background-color: #f1f1f1;
+    color: #fff;
+    background-color: #222222;
     padding-top: 48px;
-    padding-bottom: 48px;
+    padding-bottom: 20px;
     font-size: 18px;
+}
+
+.large-bg-img {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url("/images/transparent.png");
+    height: 100%;
+}
+
+.menu-description {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu-item {
+    font-weight: bold;
 }
 
 .nav-button {
@@ -111,6 +205,20 @@
     color: #be3b2c;
 }
 
+.selector-drink {
+    height: 200px;
+    width: 200px;
+    border: solid black 1px;
+    margin: 5px;
+}
+
+.selector-pizza {
+    height: 200px;
+    width: 500px;
+    border: solid black 1px;
+    margin: 5px;
+}
+
 .top-row {
     padding: 6px;
     display: table;
@@ -118,4 +226,22 @@
     color: #fff;
     background-color: #000;
     width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px lightgray;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #be3b2c;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #dd0000;
 }
