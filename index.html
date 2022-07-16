@@ -102,7 +102,10 @@
 </footer>
 
 <script>
-
+	screen.orientation.lock("portrait");
+</script>
+<script>
+	// HANDLE RESIZING OF HEADER TEXT FOR MOBILE
 	resizeHeaderText();
 	window.onresize = function() {resizeHeaderText()};
 	function resizeHeaderText() {
@@ -112,7 +115,6 @@
 			document.getElementById("header-text").style.fontSize = "400%";
 		}
 	}
-
 </script>
 
 </body>
