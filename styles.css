@@ -229,11 +229,12 @@
 
 .select-p-content {
     display: flex;
+    align-items: center;
 }
 
 .select-p-desc {
     margin: 5px;
-    width: 180px;
+    width: 150px;
 }
 
 .select-p-header {
