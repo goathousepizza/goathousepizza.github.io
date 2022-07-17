@@ -4,7 +4,6 @@
     <title>GoatHouse Pizza - Order</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
@@ -35,13 +34,52 @@
     </div>
     <div class="coll-content">
         <div class="selector-pizza">
-            <!-- TODO: pictures and labels of pizza -->
+            <div class="select-p-header">
+                Select a pizza...
+            </div>
+            <div class="select-p-body">
+                <div class="select-p-content">
+                    <div class="select-p-pic">
+                        <!-- TODO: picture of pepperoni -->
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="select-p-desc">
+                        <!-- TODO: description of pepperoni -->
+                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
+                    </div>
+                </div>
+                <div class="select-p-content">
+                    <div class="select-p-pic">
+                        <!-- TODO: picture of margherita -->
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="select-p-desc">
+                        <!-- TODO: description of margherita -->
+                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="selector-drink">
-            <!-- TODO: select drink from drop-down -->
-        </div>
-        <div class="add-order">
-            <!-- TODO: price and add to order button -->
+        <div class="drink-order">
+            <div class="selector-drink">
+                <!-- TODO: select drink from drop-down -->
+                <div style="margin:5px 10px">
+                    <label for="drinks"></label>
+                    <select id="drinks">
+                        <option>Choose a drink...</option>
+                        <option>Water</option>
+                        <option>Dr. Pepper</option>
+                        <option>Mountain Dew</option>
+                        <option>Pink Lemonade</option>
+                    </select>
+                </div>
+            </div>
+            <div class="add-order">
+                <!-- TODO: price and add to order button -->
+                <button>
+                    Add to order
+                </button>
+            </div>
         </div>
     </div>
 
@@ -51,7 +89,89 @@
         <div class="dropdown-icon"></div>
     </div>
     <div class="coll-content">
-        test
+        <div class="selector-pizza">
+            <div class="select-p-header">
+                Select a first pizza...
+            </div>
+            <div class="select-p-body">
+                <div class="select-p-content">
+                    <div class="select-p-pic">
+                        <!-- TODO: picture of pepperoni -->
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="select-p-desc">
+                        <!-- TODO: description of pepperoni -->
+                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
+                    </div>
+                </div>
+                <div class="select-p-content">
+                    <div class="select-p-pic">
+                        <!-- TODO: picture of margherita -->
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="select-p-desc">
+                        <!-- TODO: description of margherita -->
+                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="selector-pizza">
+            <div class="select-p-header">
+                Select a second pizza...
+            </div>
+            <div class="select-p-body">
+                <div class="select-p-content">
+                    <div class="select-p-pic">
+                        <!-- TODO: picture of pepperoni -->
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="select-p-desc">
+                        <!-- TODO: description of pepperoni -->
+                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
+                    </div>
+                </div>
+                <div class="select-p-content">
+                    <div class="select-p-pic">
+                        <!-- TODO: picture of margherita -->
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="select-p-desc">
+                        <!-- TODO: description of margherita -->
+                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="drink-order" id="dc_drinks">
+            <div class="selector-drink">
+                <!-- TODO: select drink from drop-down -->
+                <div class="dc-drinks">
+                    <label for="drinks2"></label>
+                    <select id="drinks2">
+                        <option>Choose drink #1</option>
+                        <option>Water</option>
+                        <option>Dr. Pepper</option>
+                        <option>Mountain Dew</option>
+                        <option>Pink Lemonade</option>
+                    </select>
+                    <label for="drinks3"></label>
+                    <select id="drinks3">
+                        <option>Choose drink #2</option>
+                        <option>Water</option>
+                        <option>Dr. Pepper</option>
+                        <option>Mountain Dew</option>
+                        <option>Pink Lemonade</option>
+                    </select>
+                </div>
+            </div>
+            <div class="add-order">
+                <!-- TODO: price and add to order button -->
+                <button>
+                    Add to order
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- A LA CARTE -->
@@ -118,9 +238,10 @@
         const menu_descriptions = document.getElementsByClassName("menu-description");
         let i;
 
-        if (window.innerWidth < 800) {
+        if (window.innerWidth < 900) {
             document.getElementById("list-group").style.width = "80%";
             document.getElementById("title").style.fontSize = "30px";
+            document.getElementById("dc_drinks").style.justifyContent = "center";
             for (i = 0; i < menu_items.length; i++) {
                 menu_items[i].style.fontSize = "21px";
                 menu_descriptions[i].style.fontSize = "12px";
@@ -128,6 +249,7 @@
         } else {
             document.getElementById("list-group").style.width = "50%";
             document.getElementById("title").style.fontSize = "48px";
+            document.getElementById("dc_drinks").style.justifyContent = "space-between";
             for (i = 0; i < menu_items.length; i++) {
                 menu_items[i].style.fontSize = "26px";
                 menu_descriptions[i].style.fontSize = "14px";
