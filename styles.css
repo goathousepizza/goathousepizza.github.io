@@ -7,6 +7,15 @@
 
 .add-order {
     margin: 5px;
+    background-color: #be3b2c;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.add-order:hover {
+    cursor: pointer;
+    background-color: #de5b4c;
 }
 
 .bgimg {
@@ -72,6 +81,8 @@
     display: flex;
     justify-content: space-around;
     width: 320px;
+    margin: 0 10px;
+    align-items: center;
 }
 
 .display-tall-center {
@@ -104,8 +115,13 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    border: solid black 1px;
+    /*border: solid #be3b2c 1px;
+    border-radius: 5px;*/
     margin: 5px;
+}
+
+.dropdown-drinks {
+    margin: 0 10px;
 }
 
 .dropdown-icon {
@@ -191,6 +207,10 @@
     flex-direction: column;
 }
 
+.pic-actual {
+    height: 150px;
+}
+
 .section-header {
     text-align: center;
     padding: 52px;
@@ -218,6 +238,8 @@
 
 .select-p-header {
     margin: 2px;
+    font-size: 24px;
+    font-style: italic;
 }
 
 .select-p-pic {
@@ -231,7 +253,8 @@
 
 .selector-pizza {
     width: 100%;
-    border: solid black 1px;
+    border: solid #be3b2c 1px;
+    border-radius: 5px;
     margin: 5px;
     display: flex;
     flex-flow: column;

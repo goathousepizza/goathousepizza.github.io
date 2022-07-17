@@ -40,21 +40,21 @@
             <div class="select-p-body">
                 <div class="select-p-content">
                     <div class="select-p-pic">
-                        <!-- TODO: picture of pepperoni -->
-                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                        <!-- picture of pepperoni -->
+                        <img src="images/nft.png" class="pic-actual" alt="No image.">
                     </div>
                     <div class="select-p-desc">
-                        <!-- TODO: description of pepperoni -->
+                        <!-- description of pepperoni -->
                         <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
                     </div>
                 </div>
                 <div class="select-p-content">
                     <div class="select-p-pic">
-                        <!-- TODO: picture of margherita -->
-                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                        <!-- picture of margherita -->
+                        <img src="images/nft.png" class="pic-actual" alt="No image.">
                     </div>
                     <div class="select-p-desc">
-                        <!-- TODO: description of margherita -->
+                        <!-- description of margherita -->
                         <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita.</p>
                     </div>
                 </div>
@@ -62,23 +62,20 @@
         </div>
         <div class="drink-order">
             <div class="selector-drink">
-                <!-- TODO: select drink from drop-down -->
-                <div style="margin:5px 10px">
-                    <label for="drinks"></label>
-                    <select id="drinks">
-                        <option>Choose a drink...</option>
-                        <option>Water</option>
-                        <option>Dr. Pepper</option>
-                        <option>Mountain Dew</option>
-                        <option>Pink Lemonade</option>
-                    </select>
+                <div class="dropdown-drinks">
+                    <label>
+                        <select>
+                            <option>Choose a drink...</option>
+                            <option>Water</option>
+                            <option>Dr. Pepper</option>
+                            <option>Mountain Dew</option>
+                            <option>Pink Lemonade</option>
+                        </select>
+                    </label>
                 </div>
             </div>
             <div class="add-order">
-                <!-- TODO: price and add to order button -->
-                <button>
-                    Add to order
-                </button>
+                ADD TO ORDER
             </div>
         </div>
     </div>
@@ -96,21 +93,21 @@
             <div class="select-p-body">
                 <div class="select-p-content">
                     <div class="select-p-pic">
-                        <!-- TODO: picture of pepperoni -->
-                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                        <!-- picture of pepperoni -->
+                        <img src="images/nft.png" class="pic-actual" alt="No image.">
                     </div>
                     <div class="select-p-desc">
-                        <!-- TODO: description of pepperoni -->
+                        <!-- description of pepperoni -->
                         <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
                     </div>
                 </div>
                 <div class="select-p-content">
                     <div class="select-p-pic">
-                        <!-- TODO: picture of margherita -->
-                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                        <!-- picture of margherita -->
+                        <img src="images/nft.png" class="pic-actual" alt="No image.">
                     </div>
                     <div class="select-p-desc">
-                        <!-- TODO: description of margherita -->
+                        <!-- description of margherita -->
                         <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita.</p>
                     </div>
                 </div>
@@ -123,21 +120,21 @@
             <div class="select-p-body">
                 <div class="select-p-content">
                     <div class="select-p-pic">
-                        <!-- TODO: picture of pepperoni -->
-                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                        <!-- picture of pepperoni -->
+                        <img src="images/nft.png" class="pic-actual" alt="No image.">
                     </div>
                     <div class="select-p-desc">
-                        <!-- TODO: description of pepperoni -->
+                        <!-- description of pepperoni -->
                         <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
                     </div>
                 </div>
                 <div class="select-p-content">
                     <div class="select-p-pic">
-                        <!-- TODO: picture of margherita -->
-                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                        <!-- picture of margherita -->
+                        <img src="images/nft.png" class="pic-actual" alt="No image.">
                     </div>
                     <div class="select-p-desc">
-                        <!-- TODO: description of margherita -->
+                        <!-- description of margherita -->
                         <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita.</p>
                     </div>
                 </div>
@@ -145,31 +142,33 @@
         </div>
         <div class="drink-order" id="dc_drinks">
             <div class="selector-drink">
-                <!-- TODO: select drink from drop-down -->
                 <div class="dc-drinks">
-                    <label for="drinks2"></label>
-                    <select id="drinks2">
-                        <option>Choose drink #1</option>
-                        <option>Water</option>
-                        <option>Dr. Pepper</option>
-                        <option>Mountain Dew</option>
-                        <option>Pink Lemonade</option>
-                    </select>
-                    <label for="drinks3"></label>
-                    <select id="drinks3">
-                        <option>Choose drink #2</option>
-                        <option>Water</option>
-                        <option>Dr. Pepper</option>
-                        <option>Mountain Dew</option>
-                        <option>Pink Lemonade</option>
-                    </select>
+                    <div class="dropdown-drinks">
+                        <label>
+                            <select>
+                                <option>Choose drink #1...</option>
+                                <option>Water</option>
+                                <option>Dr. Pepper</option>
+                                <option>Mountain Dew</option>
+                                <option>Pink Lemonade</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="dropdown-drinks">
+                        <label>
+                            <select>
+                                <option>Choose drink #2...</option>
+                                <option>Water</option>
+                                <option>Dr. Pepper</option>
+                                <option>Mountain Dew</option>
+                                <option>Pink Lemonade</option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="add-order">
-                <!-- TODO: price and add to order button -->
-                <button>
-                    Add to order
-                </button>
+                ADD TO ORDER
             </div>
         </div>
     </div>
@@ -236,6 +235,8 @@
     function resize() {
         const menu_items = document.getElementsByClassName("menu-item");
         const menu_descriptions = document.getElementsByClassName("menu-description");
+        const pizza_pics = document.getElementsByClassName("pic-actual");
+        const pizza_descs = document.getElementsByClassName("select-p-desc");
         let i;
 
         if (window.innerWidth < 900) {
@@ -246,6 +247,10 @@
                 menu_items[i].style.fontSize = "21px";
                 menu_descriptions[i].style.fontSize = "12px";
             }
+            for (i = 0; i < pizza_pics.length; i++) {
+                pizza_pics[i].style.height = "120px";
+                pizza_descs[i].style.fontSize = "12px";
+            }
         } else {
             document.getElementById("list-group").style.width = "50%";
             document.getElementById("title").style.fontSize = "48px";
@@ -253,6 +258,10 @@
             for (i = 0; i < menu_items.length; i++) {
                 menu_items[i].style.fontSize = "26px";
                 menu_descriptions[i].style.fontSize = "14px";
+            }
+            for (i = 0; i < pizza_pics.length; i++) {
+                pizza_pics[i].style.height = "150px";
+                pizza_descs[i].style.fontSize = "15px";
             }
         }
     }
