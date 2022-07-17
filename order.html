@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="drink-order">
+        <div class="drink-order" id="sc_drinks">
             <div class="selector-drink">
                 <div class="dropdown-drinks">
                     <label>
@@ -243,6 +243,7 @@
         if (window.innerWidth < 900) {
             document.getElementById("list-group").style.width = "80%";
             document.getElementById("title").style.fontSize = "30px";
+            document.getElementById("sc_drinks").style.justifyContent = "space-between";
             document.getElementById("dc_drinks").style.justifyContent = "center";
             for (i = 0; i < menu_items.length; i++) {
                 menu_items[i].style.fontSize = "21px";
@@ -255,6 +256,7 @@
         } else {
             document.getElementById("list-group").style.width = "50%";
             document.getElementById("title").style.fontSize = "48px";
+            document.getElementById("sc_drinks").style.justifyContent = "space-between";
             document.getElementById("dc_drinks").style.justifyContent = "space-between";
             for (i = 0; i < menu_items.length; i++) {
                 menu_items[i].style.fontSize = "26px";
