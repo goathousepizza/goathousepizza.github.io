@@ -1,0 +1,48 @@
+<!-- goathousepizza.com/order.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GoatHouse Pizza - Checkout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="icon" href="/images/favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            font-family: "Lato", sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+<!-- THE WHOLE PAGE -->
+<div class="large-bg-img">
+
+    <div id="title" onclick="tester()" class="bg-header"><b>CHECKOUT</b></div>
+
+    <div>
+
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>Copyright © 2022 GoatHouse Brick Oven Pizza - All Rights Reserved.<br><a href="index.html">Return Home</a></p>
+</footer>
+
+<script>
+    // UNPACK ORDER OBJECT FROM order.html
+    let order_all = JSON.parse(sessionStorage.order);
+
+    function tester() {
+        console.log(order_all);
+    }
+</script>
+
+</body>
+</html>

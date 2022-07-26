@@ -1,3 +1,4 @@
+<!-- goathousepizza.com -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +44,7 @@
 		<p><b>GoatHouse Brick Oven Pizza<br><br><br><br></b></p>
 		<p id="header-text"><b>Brick Oven Pizza<br>Made Fresh For You</b></p>
 	</div>
-	<button onclick="window.location.href = '/order.html'" class="order-button"><b>ORDER NOW</b></button>
+	<button onclick='window.open("https://calendly.com/goathousepizza")' class="order-button"><b>ORDER NOW</b></button>
 </header>
 
 <!-- Add a background color and large text to the whole page -->
@@ -97,20 +98,14 @@
 
 <!-- Footer -->
 <footer class="footer">
-	<p>Copyright © 2022 GoatHouse Brick Oven Pizza - All Rights Reserved.</p>
+	<p>Copyright © 2022 GoatHouse Br<span onclick="window.location.href = '/order.html'">i</span>ck Oven Pizza - All Rights Reserved.</p>
 </footer>
 
+<script type="text/javascript" src="script.js"></script>
 <script>
-	// HANDLE RESIZING OF HEADER TEXT FOR MOBILE
-	resizeHeaderText();
-	window.onresize = function() {resizeHeaderText()};
-	function resizeHeaderText() {
-		if (window.innerWidth < 1080) {
-			document.getElementById("header-text").style.fontSize = "250%";
-		} else {
-			document.getElementById("header-text").style.fontSize = "400%";
-		}
-	}
+	// HANDLE RESIZING OF HEADER TEXT
+	resizeHome();
+	window.onresize = function() {resizeHome()};
 </script>
 
 </body>

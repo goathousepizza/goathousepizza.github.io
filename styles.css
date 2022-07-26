@@ -18,6 +18,48 @@
     background-color: #de5b4c;
 }
 
+.alc-add-order {
+
+}
+
+.alc-drink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+    background-color: rgba(190, 59, 44, .7);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.alc-drink-all {
+    display: flex;
+    flex-direction: column;
+}
+
+.alc-pizza-all {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.alc-pizza-header {
+
+}
+
+.alc-pizza-pic {
+    height: 150px;
+}
+
+.alc-pizza-qty {
+    display: flex;
+    margin: 5px;
+}
+
 .bgimg {
     background-position: center;
     background-size: cover;
@@ -79,8 +121,9 @@
 
 .dc-drinks {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    width: 320px;
+    width: 370px;
     margin: 0 10px;
     align-items: center;
 }
@@ -179,6 +222,11 @@
     transition: .8s;
 }
 
+.order-border {
+    border: solid #be3b2c 1px;
+    border-radius: 5px;
+}
+
 .order-button {
     position: absolute;
     top: 75%;
@@ -197,6 +245,10 @@
     cursor: pointer;
 }
 
+.order-list-item {
+    color: green;
+}
+
 .page-header {
     position: relative;
     display: flex;
@@ -207,6 +259,25 @@
 
 .pic-actual {
     height: 150px;
+}
+
+.pizza-selected {
+    /*border: solid lightseagreen 5px;*/
+    border-radius: 5px;
+    background-color: rgba(20, 178, 170, .2);
+}
+
+.qty-minus:hover, .qty-plus:hover {
+    cursor: pointer;
+}
+
+.qty-selector {
+    width: 80px;
+    margin-left: 5px;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .section-header {
@@ -252,8 +323,6 @@
 
 .selector-pizza {
     width: 100%;
-    border: solid #be3b2c 1px;
-    border-radius: 5px;
     margin: 5px;
     display: flex;
     flex-flow: column;
@@ -285,4 +354,31 @@
 
 ::-webkit-scrollbar-thumb:hover {
     background: #dd0000;
+}
+
+
+
+
+
+
+
+
+.notify {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 0;
+    box-sizing: border-box;
+    color: white;
+    text-align: center;
+    background: rgba(0,0,0,.6);
+    overflow: hidden;
+    transition: height .2s;
+}
+
+.notify-active {
+    height: 50px;
 }

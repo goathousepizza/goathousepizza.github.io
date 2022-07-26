@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="icon" href="/images/favicon.png">
-    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
     <style>
         body, html {
             height: 100%;
@@ -20,6 +21,9 @@
 </head>
 <body>
 
+<!-- NOTIFICATION -->
+<div id="notify" class="notify"><span id="notifyType" class=""></span></div>
+
 <!-- THE WHOLE PAGE -->
 <div class="large-bg-img">
 
@@ -28,137 +32,45 @@
     <!-- LIST OF MENU ITEMS -->
     <div style="margin:auto;height:520px;overflow-y:auto" id="list-group">
 
-    <!-- SINGLE COMBO -->
-    <div class="collapsible">
-        <div class="menu-description"><span class="menu-item">SINGLE COMBO</span><p>1 GoatHouse Pizza, 3 GoatHorns, and a drink</p></div>
-        <div id="img1" class="dropdown-icon"></div>
-    </div>
-    <div class="coll-content">
-        <div class="selector-pizza">
-            <div class="select-p-header">
-                Select a pizza...
-            </div>
-            <div class="select-p-body">
-                <div class="select-p-content">
-                    <div class="select-p-pic">
-                        <!-- picture of pepperoni -->
-                        <img src="images/nft.png" class="pic-actual" alt="No image.">
-                    </div>
-                    <div class="select-p-desc">
-                        <!-- description of pepperoni -->
-                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
-                    </div>
-                </div>
-                <div class="select-p-content">
-                    <div class="select-p-pic">
-                        <!-- picture of margherita -->
-                        <img src="images/nft.png" class="pic-actual" alt="No image.">
-                    </div>
-                    <div class="select-p-desc">
-                        <!-- description of margherita -->
-                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita. Basil grown fresh in house.</p>
-                    </div>
-                </div>
-            </div>
+        <!-- SINGLE COMBO -->
+        <div class="collapsible">
+            <div class="menu-description"><span class="menu-item">SINGLE COMBO</span><p>1 GoatHouse Pizza, 3 GoatHorns, and a drink</p></div>
+            <div id="img1" class="dropdown-icon"></div>
         </div>
-        <div class="drink-order" id="sc_drinks">
-            <div class="selector-drink">
-                <div class="dropdown-drinks">
-                    <label>
-                        <select>
-                            <option>Choose a drink...</option>
-                            <option>Water</option>
-                            <option>Dr. Pepper</option>
-                            <option>Mountain Dew</option>
-                            <option>Pink Lemonade</option>
-                        </select>
-                    </label>
+        <div class="coll-content">
+            <div class="selector-pizza order-border">
+                <div class="select-p-header">
+                    Select a pizza...
                 </div>
-            </div>
-            <div class="add-order">
-                ADD TO ORDER
-            </div>
-        </div>
-    </div>
-
-    <!-- DOUBLE COMBO -->
-    <div class="collapsible">
-        <div class="menu-description"><span class="menu-item">DOUBLE COMBO</span><p>2 GoatHouse Pizzas, 6 GoatHorns, and 2 drinks</p></div>
-        <div class="dropdown-icon"></div>
-    </div>
-    <div class="coll-content">
-        <div class="selector-pizza">
-            <div class="select-p-header">
-                Select a first pizza...
-            </div>
-            <div class="select-p-body">
-                <div class="select-p-content">
-                    <div class="select-p-pic">
-                        <!-- picture of pepperoni -->
-                        <img src="images/nft.png" class="pic-actual" alt="No image.">
+                <div id="p-group-sc" class="select-p-body">
+                    <div class="select-p-content">
+                        <div class="select-p-pic">
+                            <!-- picture of pepperoni -->
+                            <img src="images/nft.png" class="pic-actual" alt="No image.">
+                        </div>
+                        <div class="select-p-desc">
+                            <!-- description of pepperoni -->
+                            <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
+                        </div>
                     </div>
-                    <div class="select-p-desc">
-                        <!-- description of pepperoni -->
-                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
-                    </div>
-                </div>
-                <div class="select-p-content">
-                    <div class="select-p-pic">
-                        <!-- picture of margherita -->
-                        <img src="images/nft.png" class="pic-actual" alt="No image.">
-                    </div>
-                    <div class="select-p-desc">
-                        <!-- description of margherita -->
-                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita. Basil grown fresh in house.</p>
+                    <div class="select-p-content">
+                        <div class="select-p-pic">
+                            <!-- picture of margherita -->
+                            <img src="images/nft.png" class="pic-actual" alt="No image.">
+                        </div>
+                        <div class="select-p-desc">
+                            <!-- description of margherita -->
+                            <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita. Basil grown fresh in house.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="selector-pizza">
-            <div class="select-p-header">
-                Select a second pizza...
-            </div>
-            <div class="select-p-body">
-                <div class="select-p-content">
-                    <div class="select-p-pic">
-                        <!-- picture of pepperoni -->
-                        <img src="images/nft.png" class="pic-actual" alt="No image.">
-                    </div>
-                    <div class="select-p-desc">
-                        <!-- description of pepperoni -->
-                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
-                    </div>
-                </div>
-                <div class="select-p-content">
-                    <div class="select-p-pic">
-                        <!-- picture of margherita -->
-                        <img src="images/nft.png" class="pic-actual" alt="No image.">
-                    </div>
-                    <div class="select-p-desc">
-                        <!-- description of margherita -->
-                        <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita. Basil grown fresh in house.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="drink-order" id="dc_drinks">
-            <div class="selector-drink">
-                <div class="dc-drinks">
+            <div class="drink-order" id="sc_drinks">
+                <div class="selector-drink">
                     <div class="dropdown-drinks">
                         <label>
-                            <select>
-                                <option>Choose drink #1...</option>
-                                <option>Water</option>
-                                <option>Dr. Pepper</option>
-                                <option>Mountain Dew</option>
-                                <option>Pink Lemonade</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="dropdown-drinks">
-                        <label>
-                            <select>
-                                <option>Choose drink #2...</option>
+                            <select id="drinks_sc">
+                                <option>Choose a drink...</option>
                                 <option>Water</option>
                                 <option>Dr. Pepper</option>
                                 <option>Mountain Dew</option>
@@ -167,41 +79,235 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="add-order">
-                ADD TO ORDER
+                <div id="add-sc" class="add-order">
+                    ADD TO ORDER
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- A LA CARTE -->
-    <div class="collapsible">
-        <div class="menu-description"><span class="menu-item">A LA CARTE ITEMS</span><p>Items sold individually</p></div>
-        <div class="dropdown-icon"></div>
-    </div>
-    <div class="coll-content">
-        test
-    </div>
+        <!-- DOUBLE COMBO -->
+        <div class="collapsible">
+            <div class="menu-description"><span class="menu-item">DOUBLE COMBO</span><p>2 GoatHouse Pizzas, 6 GoatHorns, and 2 drinks</p></div>
+            <div class="dropdown-icon"></div>
+        </div>
+        <div class="coll-content">
+            <div class="selector-pizza order-border">
+                <div class="select-p-header">
+                    Select a first pizza...
+                </div>
+                <div id="p-group-dc1" class="select-p-body">
+                    <div class="select-p-content">
+                        <div class="select-p-pic">
+                            <!-- picture of pepperoni -->
+                            <img src="images/nft.png" class="pic-actual" alt="No image.">
+                        </div>
+                        <div class="select-p-desc">
+                            <!-- description of pepperoni -->
+                            <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
+                        </div>
+                    </div>
+                    <div class="select-p-content">
+                        <div class="select-p-pic">
+                            <!-- picture of margherita -->
+                            <img src="images/nft.png" class="pic-actual" alt="No image.">
+                        </div>
+                        <div class="select-p-desc">
+                            <!-- description of margherita -->
+                            <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita. Basil grown fresh in house.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selector-pizza order-border">
+                <div class="select-p-header">
+                    Select a second pizza...
+                </div>
+                <div id="p-group-dc2" class="select-p-body">
+                    <div class="select-p-content">
+                        <div class="select-p-pic">
+                            <!-- picture of pepperoni -->
+                            <img src="images/nft.png" class="pic-actual" alt="No image.">
+                        </div>
+                        <div class="select-p-desc">
+                            <!-- description of pepperoni -->
+                            <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. We raise our own pigs and take em out back to kill em for their meat.</p>
+                        </div>
+                    </div>
+                    <div class="select-p-content">
+                        <div class="select-p-pic">
+                            <!-- picture of margherita -->
+                            <img src="images/nft.png" class="pic-actual" alt="No image.">
+                        </div>
+                        <div class="select-p-desc">
+                            <!-- description of margherita -->
+                            <p>Delicious pepperoni pizza, not much else to say about it. Cooked just for you. Actually wait, it's margherita. Basil grown fresh in house.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="drink-order" id="dc_drinks">
+                <div class="selector-drink">
+                    <div class="dc-drinks">
+                        <div class="dropdown-drinks">
+                            <label>
+                                <select id="drinks-dc1">
+                                    <option>Choose drink #1...</option>
+                                    <option>Water</option>
+                                    <option>Dr. Pepper</option>
+                                    <option>Mountain Dew</option>
+                                    <option>Pink Lemonade</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="dropdown-drinks">
+                            <label>
+                                <select id="drinks-dc2">
+                                    <option>Choose drink #2...</option>
+                                    <option>Water</option>
+                                    <option>Dr. Pepper</option>
+                                    <option>Mountain Dew</option>
+                                    <option>Pink Lemonade</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="add-dc" class="add-order">
+                    ADD TO ORDER
+                </div>
+            </div>
+        </div>
 
-    <!-- VIEW ORDER -->
-    <div class="collapsible">
-        <div class="menu-description"><span class="menu-item">VIEW ORDER / CHECKOUT</span></div>
-        <div class="dropdown-icon"></div>
-    </div>
-    <div class="coll-content">
-        test
-    </div>
+        <!-- A LA CARTE -->
+        <div class="collapsible">
+            <div class="menu-description"><span class="menu-item">A LA CARTE ITEMS</span><p>Items sold individually</p></div>
+            <div class="dropdown-icon"></div>
+        </div>
+        <div class="coll-content" id="alc" style="align-items: center">
+            <div style="display:flex;justify-content:space-evenly;flex-wrap:wrap;width:100%">
+                <div class="alc-pizza-all order-border">
+                    <div class="alc-pizza-header">
+                        <i>Pepperoni</i>
+                    </div>
+                    <div class="alc-pizza-pic">
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="alc-pizza-qty">
+                        QTY:
+                        <div class="qty-selector order-border">
+                            <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
+                            <span id="qty-pep" data-bind="text: qty" class="qty">0</span>
+                            <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
+                        </div>
+                    </div>
+                </div>
+                <div class="alc-pizza-all order-border">
+                    <div class="alc-pizza-header">
+                        <i>Margherita</i>
+                    </div>
+                    <div class="alc-pizza-pic">
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="alc-pizza-qty">
+                        QTY:
+                        <div class="qty-selector order-border">
+                            <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
+                            <span id="qty-marg" class="qty">0</span>
+                            <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
+                        </div>
+                    </div>
+                </div>
+                <div class="alc-pizza-all order-border">
+                    <div class="alc-pizza-header">
+                        <i>3-Pack GoatHorns</i>
+                    </div>
+                    <div class="alc-pizza-pic">
+                        <img src="images/nft.png" style="height:150px" alt="No image.">
+                    </div>
+                    <div class="alc-pizza-qty">
+                        QTY:
+                        <div class="qty-selector order-border">
+                            <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
+                            <span id="qty-horns" class="qty">0</span>
+                            <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alc-drink-all">
+                <div class="alc-drink">
+                    Add Water...
+                    <div class="qty-selector">
+                        <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
+                        <span id="qty-water" class="qty">0</span>
+                        <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
+                    </div>
+                </div>
+                <div class="alc-drink">
+                    Add Dr. Pepper...
+                    <div class="qty-selector">
+                        <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
+                        <span id="qty-drp" class="qty">0</span>
+                        <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
+                    </div>
+                </div>
+                <div class="alc-drink">
+                    Add Mountain Dew...
+                    <div class="qty-selector">
+                        <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
+                        <span id="qty-dew" class="qty">0</span>
+                        <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
+                    </div>
+                </div>
+                <div class="alc-drink">
+                    Add Pink Lemonade...&emsp;
+                    <div class="qty-selector">
+                        <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
+                        <span id="qty-lem" class="qty">0</span>
+                        <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
+                    </div>
+                </div>
+            </div>
+            <div class="drink-order" style="justify-content:center!important;">
+                <div id="add-alc" class="add-order">
+                    ADD TO ORDER
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW ORDER -->
+        <div class="collapsible">
+            <div class="menu-description"><span class="menu-item">VIEW ORDER / CHECKOUT</span></div>
+            <div class="dropdown-icon"></div>
+        </div>
+        <div id="view-order" class="coll-content">
+            <div id="order-list"></div>
+            <div class="drink-order" style="justify-content:center!important;">
+                <div onclick="gotoCheckout()" class="add-order">
+                    CHECKOUT
+                </div>
+            </div>
+        </div>
 
     </div>
 
 </div>
+
 <footer class="footer">
     <p>Copyright © 2022 GoatHouse Brick Oven Pizza - All Rights Reserved.<br><a href="index.html">Return Home</a></p>
 </footer>
+
+<script type="text/javascript" src="script.js"></script>
+<script>
+    // HANDLE THE RESIZING BASED ON SCREEN WIDTH
+    resizeOrder();
+    window.onresize = function() {resizeOrder()};
+</script>
 <script>
     // HANDLE THE COLLAPSIBLE LIST
     const coll = document.getElementsByClassName("collapsible");
     const images = document.getElementsByClassName("dropdown-icon");
+    const pizzas = document.getElementsByClassName("select-p-content");
     let i;
 
     for (i = 0; i < coll.length; i++) {
@@ -210,19 +316,20 @@
             let image = this.lastElementChild;
             // If it is open, close it
             if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-                image.setAttribute("style","background-image:url(\"/images/chevron-down.svg\")");
+                closeColl(content, image);
             } else {    // If it is closed, open it and close all others
                 // Close every collapsible
                 const details = document.getElementsByClassName("coll-content");
                 let j;
                 for (j = 0; j < details.length; j++) {
                     if (details[j].style.maxHeight) {
-                        details[j].style.maxHeight = null;
+                        closeColl(details[j], images[j]);
                     }
-                    images[j].setAttribute("style","background-image:url(\"/images/chevron-down.svg\")");
                 }
                 // Open the one that is clicked on
+                if (content.id === "view-order") {
+                    displayList();
+                }
                 content.style.maxHeight = content.scrollHeight + "px";
                 image.setAttribute("style","background-image:url(\"/images/chevron-up.svg\")");
             }
@@ -230,44 +337,289 @@
     }
 </script>
 <script>
-    // HANDLE THE RESIZING BASED ON SCREEN WIDTH
-    resize();
-    window.onresize = function() {resize()};
-    function resize() {
-        const menu_items = document.getElementsByClassName("menu-item");
-        const menu_descriptions = document.getElementsByClassName("menu-description");
-        const pizza_pics = document.getElementsByClassName("pic-actual");
-        const pizza_descs = document.getElementsByClassName("select-p-desc");
-        let i;
+    // HANDLE THE SELECTION OF PIZZAS
+    for (i = 0; i < pizzas.length; i++) {
+        pizzas[i].addEventListener("click", function () {
+            clearPizzaSelections(this.parentElement.children);
+            this.classList.add("pizza-selected");
+        })
+    }
+</script>
+<script>
+    // HANDLE QUANTITY COUNTERS
+    const minuses = document.getElementsByClassName("qty-minus");
+    const pluses = document.getElementsByClassName("qty-plus");
+    for (i = 0; i < minuses.length; i++) {
+        minuses[i].addEventListener("click", function () {
+            decrement(this.nextElementSibling);
+        })
+        pluses[i].addEventListener("click", function () {
+            increment(this.previousElementSibling);
+        })
+    }
+</script>
+<script>
+    // HANDLE THE ORDER OBJECTS
+    class Order {
+        sc = [];
+        dc = [];
+        alc_p = [];
+        alc_h = [];
+        alc_d = [];
+        constructor() {}
+        addSC(single) {
+            this.sc.push(single);
+        }
+        addDC(double) {
+            this.dc.push(double);
+        }
+        addALCP(alcp) {
+            this.alc_p.push(alcp);
+        }
+        addALCH(alch) {
+            this.alc_h.push(alch);
+        }
+        addALCD(alcd) {
+            this.alc_d.push(alcd);
+        }
+        toString() {
+            let retStr = "";
+            // If order is empty
+            if (this.sc.length === 0 && this.dc.length === 0 && this.alc_p.length === 0 && this.alc_h.length === 0 && this.alc_d.length === 0) {
+                return "Nothing to see here...";
+            }
+            if (this.sc.length > 0 || this.dc.length > 0) {
+                retStr += "Combos:\n";
+            }
+            // Single Combos
+            if (this.sc.length > 0) {
+                for (i = 0; i < this.sc.length; i++) {
+                    retStr += this.sc[i].toString() + "\n";
+                }
+            }
+            // Double Combos
+            if (this.dc.length > 0) {
+                for (i = 0; i < this.dc.length; i++) {
+                    retStr += this.dc[i].toString() + "\n";
+                }
+            }
+            // A La Carte Items
+            if (this.alc_p.length > 0 || this.alc_h.length > 0 || this.alc_d.length > 0) {
+                if (this.sc.length > 0 || this.dc.length > 0) {
+                    retStr += "\n";
+                }
+                retStr += "A La Carte:\n";
+                let pep, marg, water, drp, dew, lemon;
+                pep = 0;
+                marg = 0;
+                water = 0;
+                drp = 0;
+                dew = 0;
+                lemon = 0;
+                // Count the number of each a la carte item
+                for (i = 0; i < this.alc_p.length; i++) {
+                    if (this.alc_p[i] === "Pepperoni") pep++;
+                    if (this.alc_p[i] === "Margherita") marg++;
+                }
+                for (i = 0; i < this.alc_d.length; i++) {
+                    if (this.alc_d[i] === "Water") water++;
+                    if (this.alc_d[i] === "Dr. Pepper") drp++;
+                    if (this.alc_d[i] === "Mountain Dew") dew++;
+                    if (this.alc_d[i] === "Pink Lemonade") lemon++;
+                }
+                if (pep > 0) retStr += (pep + "x Pepperoni Pizza\n");
+                if (marg > 0) retStr += (marg + "x Margherita Pizza\n");
+                if (this.alc_h.length > 0) retStr += (this.alc_h.length + "x 3 GoatHorns\n");
+                if (water > 0) retStr += (water + "x Water\n");
+                if (drp > 0) retStr += (drp + "x Dr. Pepper\n");
+                if (dew > 0) retStr += (dew + "x Mountain Dew\n");
+                if (lemon > 0) retStr += (lemon + "x Pink Lemonade");
+            }
+            return retStr;
+        }
+    }
 
-        if (window.innerWidth < 900) {
-            document.getElementById("list-group").style.width = "80%";
-            document.getElementById("title").style.fontSize = "30px";
-            document.getElementById("sc_drinks").style.justifyContent = "space-between";
-            document.getElementById("dc_drinks").style.justifyContent = "center";
-            for (i = 0; i < menu_items.length; i++) {
-                menu_items[i].style.fontSize = "21px";
-                menu_descriptions[i].style.fontSize = "12px";
+    // The one and only order to ever be declared
+    let order_all = new Order();
+
+    class SingleCombo {
+        constructor(pizza, drink) {
+            this.pizza = pizza;
+            this.drink = drink;
+        }
+        toString() {
+            return "Single Combo with " + this.pizza + " Pizza, 3 GoatHorns, and " + this.drink;
+        }
+    }
+    class DoubleCombo {
+        constructor(pizza1, pizza2, drink1, drink2) {
+            this.pizza1 = pizza1;
+            this.pizza2 = pizza2;
+            this.drink1 = drink1;
+            this.drink2 = drink2;
+        }
+        toString() {
+            let pizzaStr;
+            if (this.pizza1 === this.pizza2) {
+                pizzaStr = "2 " + this.pizza1 + " Pizzas,";
+            } else {
+                pizzaStr = "1 " + this.pizza1 + " Pizza, 1 " + this.pizza2 + " Pizza,"
             }
-            for (i = 0; i < pizza_pics.length; i++) {
-                pizza_pics[i].style.height = "90px";
-                pizza_descs[i].style.fontSize = "11px";
+            let drinkStr;
+            if (this.drink1 === this.drink2) {
+                drinkStr = "and 2 " + this.drink1 + "s";
+            } else {
+                drinkStr = "a " + this.drink1 + ", and a " + this.drink2;
             }
-        } else {
-            document.getElementById("list-group").style.width = "50%";
-            document.getElementById("title").style.fontSize = "48px";
-            document.getElementById("sc_drinks").style.justifyContent = "space-between";
-            document.getElementById("dc_drinks").style.justifyContent = "space-between";
-            for (i = 0; i < menu_items.length; i++) {
-                menu_items[i].style.fontSize = "26px";
-                menu_descriptions[i].style.fontSize = "14px";
-            }
-            for (i = 0; i < pizza_pics.length; i++) {
-                pizza_pics[i].style.height = "150px";
-                pizza_descs[i].style.fontSize = "15px";
-            }
+            return "Double Combo with " + pizzaStr + " 6 GoatHorns, " + drinkStr;
         }
     }
 </script>
+<script>
+    // HANDLE THE CLICKING OF ADD TO ORDER BUTTONS
+    // SINGLE COMBO
+    document.getElementById("add-sc").addEventListener("click", function () {
+        const p_group = document.getElementById("p-group-sc");
+        const drinks = document.getElementById("drinks_sc");
+        let pizza_type, drink_type;
+        let i;
+        for (i = 0; i < p_group.children.length; i++) {
+            if (p_group.children[i].classList.contains("pizza-selected")) {
+                if (i === 0) pizza_type = "Pepperoni";
+                else if (i === 1) pizza_type = "Margherita";
+                break;
+            }
+            if (i === p_group.children.length - 1) {
+                notify("Please select a pizza");
+                return;
+            }
+        }
+        drink_type = drinks.options[drinks.selectedIndex].value;
+        if (drink_type === "Choose a drink...") {
+            notify("Please select a drink");
+            return;
+        }
+        notify("Added to order.");
+        order_all.addSC(new SingleCombo(pizza_type, drink_type));
+        closeColl(this.parentElement.parentElement, this.parentElement.parentElement.previousElementSibling.lastElementChild);
+
+    })
+
+    // DOUBLE COMBO
+    document.getElementById("add-dc").addEventListener("click", function () {
+        const p_group1 = document.getElementById("p-group-dc1");
+        const p_group2 = document.getElementById("p-group-dc2");
+        const drinks1 = document.getElementById("drinks-dc1");
+        const drinks2 = document.getElementById("drinks-dc2");
+        let pizza_type1, pizza_type2, drink_type1, drink_type2;
+        let i;
+        for (i = 0; i < p_group1.children.length; i++) {
+            if (p_group1.children[i].classList.contains("pizza-selected")) {
+                if (i === 0) pizza_type1 = "Pepperoni";
+                else if (i === 1) pizza_type1 = "Margherita";
+                break;
+            }
+            if (i === p_group1.children.length - 1) {
+                notify("Please select a pizza");
+                return;
+            }
+        }
+        for (i = 0; i < p_group2.children.length; i++) {
+            if (p_group2.children[i].classList.contains("pizza-selected")) {
+                if (i === 0) pizza_type2 = "Pepperoni";
+                else if (i === 1) pizza_type2 = "Margherita";
+                break;
+            }
+            if (i === p_group2.children.length - 1) {
+                notify("Please select a pizza");
+                return;
+            }
+        }
+        drink_type1 = drinks1.options[drinks1.selectedIndex].value;
+        drink_type2 = drinks2.options[drinks2.selectedIndex].value;
+        if (drink_type1 === "Choose drink #1..." || drink_type2 === "Choose drink #2...") {
+            notify("Please select a drink");
+            return;
+        }
+        notify("Added to order.");
+        order_all.addDC(new DoubleCombo(pizza_type1, pizza_type2, drink_type1, drink_type2));
+        closeColl(this.parentElement.parentElement, this.parentElement.parentElement.previousElementSibling.lastElementChild);
+    })
+
+    // A LA CARTE
+    document.getElementById("add-alc").addEventListener("click", function () {
+        let pep, marg, horns, water, drp, dew, lem;
+        pep = document.getElementById("qty-pep").innerText;
+        marg = document.getElementById("qty-marg").innerText;
+        horns = document.getElementById("qty-horns").innerText;
+        water = document.getElementById("qty-water").innerText;
+        drp = document.getElementById("qty-drp").innerText;
+        dew = document.getElementById("qty-dew").innerText;
+        lem = document.getElementById("qty-lem").innerText;
+        if (pep === "0" && marg === "0" && horns === "0" && water === "0" && drp === "0" && dew === "0" && lem === "0") {
+            notify("Nothing to add.");
+            return;
+        }
+        for (i = 0; i < pep; i++) {
+            order_all.addALCP("Pepperoni");
+        }
+        for (i = 0; i < marg; i++) {
+            order_all.addALCP("Margherita");
+        }
+        for (i = 0; i < horns; i++) {
+            order_all.addALCH("3 Goat Horns");
+        }
+        for (i = 0; i < water; i++) {
+            order_all.addALCD("Water");
+        }
+        for (i = 0; i < drp; i++) {
+            order_all.addALCD("Dr. Pepper");
+        }
+        for (i = 0; i < dew; i++) {
+            order_all.addALCD("Mountain Dew");
+        }
+        for (i = 0; i < lem; i++) {
+            order_all.addALCD("Pink Lemonade");
+        }
+        notify("Added to order.");
+        closeColl(this.parentElement.parentElement, this.parentElement.parentElement.previousElementSibling.lastElementChild);
+    })
+</script>
+
 </body>
 </html>
+
+<!--
+TODO: make the switch
+TODO: have the drink selectors reset upon closure of coll-content
+TODO: have checkout button be invisible when the order is empty
+TODO: make the items in the order deletable
+TODO: add price next to items in the order list
+TODO: optimize order.html for mobile
+TODO: fully upgrade the selectors
+-->
+
+<!-- EXTRA STORAGE --><!--
+<script>
+    // HANDLE VIEW ORDER
+    //
+</script>
+<script>
+    // HANDLE THE NOTIFICATION BAR
+    /*function notify(str) {
+        document.getElementById("notifyType").innerText = str;
+        document.getElementById("notify").classList.add("notify-active");
+
+        setTimeout(function(){
+            document.getElementById("notify").classList.remove("notify-active");
+        },2000);
+    }*/
+</script>
+<script>
+    // HANDLE CHECKOUT BUTTON
+    /*function gotoCheckout() {
+        sessionStorage.order = JSON.stringify(order_all);
+        window.location.href = 'checkout.html';
+    }*/
+</script>
+-->
