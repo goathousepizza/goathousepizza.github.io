@@ -69,8 +69,8 @@
                 <div class="selector-drink">
                     <div class="dropdown-drinks">
                         <label>
-                            <select id="drinks_sc">
-                                <option>Choose a drink...</option>
+                            <select class="slc" id="drinks_sc">
+                                <option value="0">Choose a drink...</option>
                                 <option>Water</option>
                                 <option>Dr. Pepper</option>
                                 <option>Mountain Dew</option>
@@ -150,8 +150,8 @@
                     <div class="dc-drinks">
                         <div class="dropdown-drinks">
                             <label>
-                                <select id="drinks-dc1">
-                                    <option>Choose drink #1...</option>
+                                <select class="slc" id="drinks-dc1">
+                                    <option value="0">Choose drink #1...</option>
                                     <option>Water</option>
                                     <option>Dr. Pepper</option>
                                     <option>Mountain Dew</option>
@@ -161,8 +161,8 @@
                         </div>
                         <div class="dropdown-drinks">
                             <label>
-                                <select id="drinks-dc2">
-                                    <option>Choose drink #2...</option>
+                                <select class="slc" id="drinks-dc2">
+                                    <option value="0">Choose drink #2...</option>
                                     <option>Water</option>
                                     <option>Dr. Pepper</option>
                                     <option>Mountain Dew</option>
@@ -281,11 +281,21 @@
             <div class="dropdown-icon"></div>
         </div>
         <div id="view-order" class="coll-content">
-            <div id="order-list"></div>
-            <div class="drink-order" style="justify-content:center!important;">
-                <div onclick="gotoCheckout()" class="add-order">
-                    CHECKOUT
-                </div>
+            <div id="order-list" style="margin:10px;width:100%;">
+
+
+                <!--<div class="order-list-item order-border">
+                    <div class="order-list-item-desc">
+                        <div><b>Single Combo</b></div>
+                        <div>Pepperoni Pizza, 3 GoatHorns, and a Dr. Pepper</div>
+                    </div>
+                    <div class="price-x">
+                        <div>$6.00</div>
+                        <div class="x-button"></div>
+                    </div>
+                </div>-->
+
+
             </div>
         </div>
 
@@ -294,7 +304,7 @@
 </div>
 
 <footer class="footer">
-    <p>Copyright © 2022 GoatHouse Brick Oven Pizza - All Rights Reserved.<br><a href="index.html">Return Home</a></p>
+    <p>Copyright © 2022 GoatHouse Brick Oven Pizza - All Rights <span onclick="console.log(order_all)">Reserved.</span><br><a href="index.html">Return Home</a></p>
 </footer>
 
 <script type="text/javascript" src="script.js"></script>
@@ -308,9 +318,8 @@
     const coll = document.getElementsByClassName("collapsible");
     const images = document.getElementsByClassName("dropdown-icon");
     const pizzas = document.getElementsByClassName("select-p-content");
-    let i;
 
-    for (i = 0; i < coll.length; i++) {
+    for (let i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function() {
             const content = this.nextElementSibling;
             let image = this.lastElementChild;
@@ -338,7 +347,7 @@
 </script>
 <script>
     // HANDLE THE SELECTION OF PIZZAS
-    for (i = 0; i < pizzas.length; i++) {
+    for (let i = 0; i < pizzas.length; i++) {
         pizzas[i].addEventListener("click", function () {
             clearPizzaSelections(this.parentElement.children);
             this.classList.add("pizza-selected");
@@ -349,7 +358,7 @@
     // HANDLE QUANTITY COUNTERS
     const minuses = document.getElementsByClassName("qty-minus");
     const pluses = document.getElementsByClassName("qty-plus");
-    for (i = 0; i < minuses.length; i++) {
+    for (let i = 0; i < minuses.length; i++) {
         minuses[i].addEventListener("click", function () {
             decrement(this.nextElementSibling);
         })
@@ -393,13 +402,13 @@
             }
             // Single Combos
             if (this.sc.length > 0) {
-                for (i = 0; i < this.sc.length; i++) {
+                for (let i = 0; i < this.sc.length; i++) {
                     retStr += this.sc[i].toString() + "\n";
                 }
             }
             // Double Combos
             if (this.dc.length > 0) {
-                for (i = 0; i < this.dc.length; i++) {
+                for (let i = 0; i < this.dc.length; i++) {
                     retStr += this.dc[i].toString() + "\n";
                 }
             }
@@ -417,11 +426,11 @@
                 dew = 0;
                 lemon = 0;
                 // Count the number of each a la carte item
-                for (i = 0; i < this.alc_p.length; i++) {
+                for (let i = 0; i < this.alc_p.length; i++) {
                     if (this.alc_p[i] === "Pepperoni") pep++;
                     if (this.alc_p[i] === "Margherita") marg++;
                 }
-                for (i = 0; i < this.alc_d.length; i++) {
+                for (let i = 0; i < this.alc_d.length; i++) {
                     if (this.alc_d[i] === "Water") water++;
                     if (this.alc_d[i] === "Dr. Pepper") drp++;
                     if (this.alc_d[i] === "Mountain Dew") dew++;
@@ -437,6 +446,9 @@
             }
             return retStr;
         }
+        isEmpty() {
+            return (this.sc.length === 0 && this.dc.length === 0 && this.alc_p.length === 0 && this.alc_h.length === 0 && this.alc_d.length === 0);
+        }
     }
 
     // The one and only order to ever be declared
@@ -448,7 +460,7 @@
             this.drink = drink;
         }
         toString() {
-            return "Single Combo with " + this.pizza + " Pizza, 3 GoatHorns, and " + this.drink;
+            return this.pizza + " Pizza, 3 GoatHorns, and a " + this.drink;
         }
     }
     class DoubleCombo {
@@ -471,7 +483,7 @@
             } else {
                 drinkStr = "a " + this.drink1 + ", and a " + this.drink2;
             }
-            return "Double Combo with " + pizzaStr + " 6 GoatHorns, " + drinkStr;
+            return pizzaStr + " 6 GoatHorns, " + drinkStr;
         }
     }
 </script>
@@ -482,8 +494,7 @@
         const p_group = document.getElementById("p-group-sc");
         const drinks = document.getElementById("drinks_sc");
         let pizza_type, drink_type;
-        let i;
-        for (i = 0; i < p_group.children.length; i++) {
+        for (let i = 0; i < p_group.children.length; i++) {
             if (p_group.children[i].classList.contains("pizza-selected")) {
                 if (i === 0) pizza_type = "Pepperoni";
                 else if (i === 1) pizza_type = "Margherita";
@@ -495,7 +506,7 @@
             }
         }
         drink_type = drinks.options[drinks.selectedIndex].value;
-        if (drink_type === "Choose a drink...") {
+        if (drink_type === "0") {
             notify("Please select a drink");
             return;
         }
@@ -512,8 +523,7 @@
         const drinks1 = document.getElementById("drinks-dc1");
         const drinks2 = document.getElementById("drinks-dc2");
         let pizza_type1, pizza_type2, drink_type1, drink_type2;
-        let i;
-        for (i = 0; i < p_group1.children.length; i++) {
+        for (let i = 0; i < p_group1.children.length; i++) {
             if (p_group1.children[i].classList.contains("pizza-selected")) {
                 if (i === 0) pizza_type1 = "Pepperoni";
                 else if (i === 1) pizza_type1 = "Margherita";
@@ -524,7 +534,7 @@
                 return;
             }
         }
-        for (i = 0; i < p_group2.children.length; i++) {
+        for (let i = 0; i < p_group2.children.length; i++) {
             if (p_group2.children[i].classList.contains("pizza-selected")) {
                 if (i === 0) pizza_type2 = "Pepperoni";
                 else if (i === 1) pizza_type2 = "Margherita";
@@ -537,7 +547,7 @@
         }
         drink_type1 = drinks1.options[drinks1.selectedIndex].value;
         drink_type2 = drinks2.options[drinks2.selectedIndex].value;
-        if (drink_type1 === "Choose drink #1..." || drink_type2 === "Choose drink #2...") {
+        if (drink_type1 === "0" || drink_type2 === "0") {
             notify("Please select a drink");
             return;
         }
@@ -560,66 +570,44 @@
             notify("Nothing to add.");
             return;
         }
-        for (i = 0; i < pep; i++) {
+        for (let i = 0; i < pep; i++) {
             order_all.addALCP("Pepperoni");
         }
-        for (i = 0; i < marg; i++) {
+        for (let i = 0; i < marg; i++) {
             order_all.addALCP("Margherita");
         }
-        for (i = 0; i < horns; i++) {
+        for (let i = 0; i < horns; i++) {
             order_all.addALCH("3 Goat Horns");
         }
-        for (i = 0; i < water; i++) {
+        for (let i = 0; i < water; i++) {
             order_all.addALCD("Water");
         }
-        for (i = 0; i < drp; i++) {
+        for (let i = 0; i < drp; i++) {
             order_all.addALCD("Dr. Pepper");
         }
-        for (i = 0; i < dew; i++) {
+        for (let i = 0; i < dew; i++) {
             order_all.addALCD("Mountain Dew");
         }
-        for (i = 0; i < lem; i++) {
+        for (let i = 0; i < lem; i++) {
             order_all.addALCD("Pink Lemonade");
         }
         notify("Added to order.");
         closeColl(this.parentElement.parentElement, this.parentElement.parentElement.previousElementSibling.lastElementChild);
     })
 </script>
+<script>
+    // HANDLE THE X BUTTONS
+    for (let i = 0; i < document.getElementsByClassName("x-button").length; i++) {
+        document.getElementsByClassName("x-button")[i].addEventListener("click", function () {
+            console.log("clicked.");
+        })
+    }
+</script>
 
 </body>
 </html>
 
 <!--
-TODO: make the switch
-TODO: have the drink selectors reset upon closure of coll-content
-TODO: have checkout button be invisible when the order is empty
-TODO: make the items in the order deletable
-TODO: add price next to items in the order list
 TODO: optimize order.html for mobile
-TODO: fully upgrade the selectors
--->
-
-<!-- EXTRA STORAGE --><!--
-<script>
-    // HANDLE VIEW ORDER
-    //
-</script>
-<script>
-    // HANDLE THE NOTIFICATION BAR
-    /*function notify(str) {
-        document.getElementById("notifyType").innerText = str;
-        document.getElementById("notify").classList.add("notify-active");
-
-        setTimeout(function(){
-            document.getElementById("notify").classList.remove("notify-active");
-        },2000);
-    }*/
-</script>
-<script>
-    // HANDLE CHECKOUT BUTTON
-    /*function gotoCheckout() {
-        sessionStorage.order = JSON.stringify(order_all);
-        window.location.href = 'checkout.html';
-    }*/
-</script>
+TODO: fully upgrade the selectors (maybe)
 -->
