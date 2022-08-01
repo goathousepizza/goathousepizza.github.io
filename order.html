@@ -369,13 +369,56 @@
 </script>
 <script>
     // HANDLE THE ORDER OBJECTS
+    class SingleCombo {
+        constructor(pizza, drink) {
+            this.pizza = pizza;
+            this.drink = drink;
+        }
+        toString() {
+            return this.pizza + " Pizza, 3 GoatHorns, and a " + this.drink;
+        }
+    }
+    class DoubleCombo {
+        constructor(pizza1, pizza2, drink1, drink2) {
+            this.pizza1 = pizza1;
+            this.pizza2 = pizza2;
+            this.drink1 = drink1;
+            this.drink2 = drink2;
+        }
+        toString() {
+            let pizzaStr;
+            if (this.pizza1 === this.pizza2) {
+                pizzaStr = "2 " + this.pizza1 + " Pizzas,";
+            } else {
+                pizzaStr = "1 " + this.pizza1 + " Pizza, 1 " + this.pizza2 + " Pizza,"
+            }
+            let drinkStr;
+            if (this.drink1 === this.drink2) {
+                drinkStr = "and 2 " + this.drink1 + "s";
+            } else {
+                drinkStr = "a " + this.drink1 + ", and a " + this.drink2;
+            }
+            return pizzaStr + " 6 GoatHorns, " + drinkStr;
+        }
+    }
     class Order {
         sc = [];
         dc = [];
         alc_p = [];
         alc_h = [];
         alc_d = [];
-        constructor() {}
+        constructor(temp) {
+            if (temp === null) return;
+            for (let i = 0; i < temp.sc.length; i++) {
+                this.addSC(new SingleCombo(temp.sc[i].pizza, temp.sc[i].drink));
+            }
+            for (let i = 0; i < temp.dc.length; i++) {
+                this.addDC(new DoubleCombo(temp.dc[i].pizza1, temp.dc[i].pizza2, temp.dc[i].drink1, temp.dc[i].drink2));
+            }
+            this.alc_p = temp.alc_p;
+            this.alc_h = temp.alc_h;
+            this.alc_d = temp.alc_d;
+        }
         addSC(single) {
             this.sc.push(single);
         }
@@ -452,40 +495,8 @@
     }
 
     // The one and only order to ever be declared
-    let order_all = new Order();
-
-    class SingleCombo {
-        constructor(pizza, drink) {
-            this.pizza = pizza;
-            this.drink = drink;
-        }
-        toString() {
-            return this.pizza + " Pizza, 3 GoatHorns, and a " + this.drink;
-        }
-    }
-    class DoubleCombo {
-        constructor(pizza1, pizza2, drink1, drink2) {
-            this.pizza1 = pizza1;
-            this.pizza2 = pizza2;
-            this.drink1 = drink1;
-            this.drink2 = drink2;
-        }
-        toString() {
-            let pizzaStr;
-            if (this.pizza1 === this.pizza2) {
-                pizzaStr = "2 " + this.pizza1 + " Pizzas,";
-            } else {
-                pizzaStr = "1 " + this.pizza1 + " Pizza, 1 " + this.pizza2 + " Pizza,"
-            }
-            let drinkStr;
-            if (this.drink1 === this.drink2) {
-                drinkStr = "and 2 " + this.drink1 + "s";
-            } else {
-                drinkStr = "a " + this.drink1 + ", and a " + this.drink2;
-            }
-            return pizzaStr + " 6 GoatHorns, " + drinkStr;
-        }
-    }
+    let order_temp = JSON.parse(sessionStorage.getItem("order"));
+    let order_all = new Order(order_temp);
 </script>
 <script>
     // HANDLE THE CLICKING OF ADD TO ORDER BUTTONS
@@ -512,8 +523,8 @@
         }
         notify("Added to order.");
         order_all.addSC(new SingleCombo(pizza_type, drink_type));
+        updateSessionOrder();
         closeColl(this.parentElement.parentElement, this.parentElement.parentElement.previousElementSibling.lastElementChild);
-
     })
 
     // DOUBLE COMBO
@@ -553,6 +564,7 @@
         }
         notify("Added to order.");
         order_all.addDC(new DoubleCombo(pizza_type1, pizza_type2, drink_type1, drink_type2));
+        updateSessionOrder();
         closeColl(this.parentElement.parentElement, this.parentElement.parentElement.previousElementSibling.lastElementChild);
     })
 
@@ -577,7 +589,7 @@
             order_all.addALCP("Margherita");
         }
         for (let i = 0; i < horns; i++) {
-            order_all.addALCH("3 Goat Horns");
+            order_all.addALCH("3 GoatHorns");
         }
         for (let i = 0; i < water; i++) {
             order_all.addALCD("Water");
@@ -592,16 +604,9 @@
             order_all.addALCD("Pink Lemonade");
         }
         notify("Added to order.");
+        updateSessionOrder();
         closeColl(this.parentElement.parentElement, this.parentElement.parentElement.previousElementSibling.lastElementChild);
     })
-</script>
-<script>
-    // HANDLE THE X BUTTONS
-    for (let i = 0; i < document.getElementsByClassName("x-button").length; i++) {
-        document.getElementsByClassName("x-button")[i].addEventListener("click", function () {
-            console.log("clicked.");
-        })
-    }
 </script>
 
 </body>

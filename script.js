@@ -7,14 +7,14 @@ function clearPizzaSelections(pizzas) {
 }
 
 function clickX(x, type, i) {
-    console.log(x.parentElement.parentElement);
-    fancyRemove(x.parentElement.parentElement);
     // Remove it from the actual order
     if (type === 0) order_all.sc.splice(i, 1);
     else if (type === 1) order_all.dc.splice(i, 1);
     else if (type === 2) order_all.alc_p.splice(i, 1);
     else if (type === 3) order_all.alc_h.splice(i, 1);
     else if (type === 4) order_all.alc_d.splice(i, 1);
+    updateSessionOrder();
+    fancyRemove(x.parentElement.parentElement);
 }
 
 function closeColl(content, image) {
@@ -31,6 +31,13 @@ function decrement(qty) {
         x--;
         qty.innerText = x;
     }
+}
+
+function displayEmptyList() {
+    let div = document.createElement("div");
+    div.innerHTML = "Nothing to see here...";
+    div.style.textAlign = "center";
+    document.getElementById("order-list").appendChild(div);
 }
 
 function displayItem(type, i) {
@@ -81,10 +88,7 @@ function displayList() {
     let order_list = document.getElementById("order-list");
     if (order_all.isEmpty()) {
         if (order_list.children.length < 1) {
-            let div = document.createElement("div");
-            div.innerHTML = "Nothing to see here...";
-            div.style.textAlign = "center";
-            order_list.appendChild(div);
+            displayEmptyList();
         }
         return;
     }
@@ -122,31 +126,30 @@ function displayList() {
 function fancyRemove(element) {
     // make the div fade away
     let t = 40;
-    setInterval(function () {
+    let test = setInterval(function () {
         if (!element.style.opacity) {
             element.style.opacity = "1";
         }
         if (element.style.opacity > 0) {
             element.style.opacity -= "0.1";
         } else {
-            element.remove()
+            element.remove();
+            displayList();
+            clearInterval(test);
         }
     }, t);
-    setInterval(function () {
+
+    setTimeout(function () {
         let order_list = document.getElementById("order-list");
         if (order_list.firstElementChild.classList.contains("drink-order")) {
             order_list.firstElementChild.remove();
-            let div = document.createElement("div");
-            // add a class here?
-            div.innerHTML = "Nothing to see here...";
-            div.style.textAlign = "center";
-            order_list.appendChild(div);
+            displayEmptyList();
         }
-    }, t);
+    }, (t * 11) + 1);
 }
 
 function gotoCheckout() {
-    sessionStorage.order = JSON.stringify(order_all);
+    updateSessionOrder();
     window.location.href = 'checkout.html';
 }
 
@@ -189,8 +192,20 @@ function resetQtys() {
     }
 }
 
+function resizeCheckout() {
+    if (window.innerWidth < 604) {
+        document.getElementById("title").style.fontSize = "30px";
+        document.getElementById("pickup-desc").style.fontSize = "13px";
+        document.getElementById("calendar-box").style.width = "80%";
+    } else {
+        document.getElementById("title").style.fontSize = "48px";
+        document.getElementById("pickup-desc").style.fontSize = "20px";
+        document.getElementById("calendar-box").style.width = "50%";
+    }
+}
+
 function resizeHome() {
-    if (window.innerWidth < 1080) {
+    if (window.innerWidth < 900) {
         document.getElementById("header-text").style.fontSize = "250%";
     } else {
         document.getElementById("header-text").style.fontSize = "400%";
@@ -230,4 +245,8 @@ function resizeOrder() {
             pizza_descs[i].style.fontSize = "15px";
         }
     }
+}
+
+function updateSessionOrder() {
+    sessionStorage.order = JSON.stringify(order_all);
 }
