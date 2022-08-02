@@ -1,0 +1,25 @@
+{
+  "name": "goathousepizza.github.io",
+  "version": "1.0.0",
+  "description": "Please consult Noah Pratt (prattnj@gmail.com) for any inquiries.",
+  "main": "jquery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goathousepizza/goathousepizza.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goathousepizza/goathousepizza.github.io/issues"
+  },
+  "homepage": "https://github.com/goathousepizza/goathousepizza.github.io#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "googleapis": "^105.0.0"
+  }
+}
