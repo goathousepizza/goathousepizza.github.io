@@ -5,17 +5,29 @@ const { google } = require('googleapis');
 const app = express();
 const port = 3000;
 
-const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+const SCOPES = 'https://www.googleapis.com/auth/calendar';
 const { gapitest } = process.env;
 const test = JSON.parse(gapitest);
 const GOOGLE_PRIVATE_KEY = test.private_key;
 const GOOGLE_CLIENT_EMAIL = "ghp-service@goathousepizza.iam.gserviceaccount.com";
 const GOOGLE_PROJECT_NUMBER = "668492908459";
 const GOOGLE_CALENDAR_ID = "prattnj@gmail.com";
-
-console.log(GOOGLE_PRIVATE_KEY);
+const event = {
+    'summary': 'I hope this works.',
+    'location': '800 Howard St., San Francisco, CA 94103',
+    'description': 'Customer\'s order will go here',
+    'start': {
+        'dateTime': '2022-08-02T20:00:00-07:00',
+        'timeZone': 'America/Phoenix'
+    },
+    'end': {
+        'dateTime': '2022-08-02T20:15:00-07:00',
+        'timeZone': 'America/Phoenix'
+    }
+};
 
 app.get('/', (req, res) => {
+
     const jwtClient = new google.auth.JWT(
         GOOGLE_CLIENT_EMAIL,
         null,
@@ -27,6 +39,11 @@ app.get('/', (req, res) => {
         version: 'v3',
         project: GOOGLE_PROJECT_NUMBER,
         auth: jwtClient
+    });
+
+    calendar.events.insert({
+        'calendarId': GOOGLE_CALENDAR_ID,
+        'resource': event
     });
 
     calendar.events.list({
