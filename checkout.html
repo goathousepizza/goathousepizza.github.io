@@ -38,13 +38,12 @@
 </div>
 
 <footer class="footer">
-    <p>Copyright © 2022 <span onclick="test();">GoatHouse</span> Brick Oven Pizza - All Rights <span onclick="window.location.href='order.html'">Reserved</span>.<br><a href="index.html">Return Home</a></p>
+    <p>Copyright © 2022 <span id="finish">GoatHouse</span> Brick Oven Pizza - All Rights <span onclick="window.location.href='order.html'">Reserved</span>.<br><a href="index.html">Return Home</a></p>
 </footer>
 
 <script type="text/javascript" src="script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-
 <script>
     // HANDLE THE RESIZING BASED ON SCREEN WIDTH
     resizeCheckout();
@@ -52,7 +51,7 @@
 </script>
 <script>
     // UNPACK ORDER OBJECT FROM order.html AND HANDLE PRICES
-    let order_all = JSON.parse(sessionStorage.order);
+    let order_all = new Order(JSON.parse(sessionStorage.order));
     let price_sc = 8;
     let price_dc = 15;
     let price_alc_p = 6;
@@ -77,15 +76,24 @@
             }
         ],
         "locale": {
-            "firstDayOfWeek": 0 // set start day of week to Monday
+            "firstDayOfWeek": 0 // set start day of week to Sunday
         },
-        onClose: function (dateStr) {
-            datetime = dateStr;
+        onClose: function (dateTime) {
+            datetime = dateTime;
         }
     });
-    function test() {
-        console.log(datetime);
-    }
+</script>
+<script>
+    // HANDLE THE SUBMISSION OF THE ORDER
+    document.getElementById("finish").addEventListener("click", function () {
+        console.log("finishing...");
+        console.log(order_all);
+        let dt1 = calculateDateTime1(datetime[0].toString());
+        let dt2 = calculateDateTime2(dt1);
+        const event = createEvent(dt1, dt2, order_all.toStringList(), price_total);
+        console.log(event);
+        // add the event to calendar
+    })
 </script>
 
 </body>

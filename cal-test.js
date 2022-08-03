@@ -6,14 +6,14 @@ const app = express();
 const port = 3000;
 
 const SCOPES = 'https://www.googleapis.com/auth/calendar';
-const { gapitest } = process.env;
-const test = JSON.parse(gapitest);
-const GOOGLE_PRIVATE_KEY = test.private_key;
-const GOOGLE_CLIENT_EMAIL = "ghp-service@goathousepizza.iam.gserviceaccount.com";
+const { jwt } = process.env;
+const gapi = JSON.parse(jwt);
+const GOOGLE_PRIVATE_KEY = gapi.private_key;
+const GOOGLE_CLIENT_EMAIL = gapi.client_email;
 const GOOGLE_PROJECT_NUMBER = "668492908459";
 const GOOGLE_CALENDAR_ID = "prattnj@gmail.com";
 const event = {
-    'summary': 'I hope this works.',
+    'summary': 'This is the event',
     'location': '800 Howard St., San Francisco, CA 94103',
     'description': 'Customer\'s order will go here',
     'start': {

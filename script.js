@@ -1,3 +1,185 @@
+// noinspection ES6ConvertVarToLetConst
+var SingleCombo = class {
+    constructor(pizza, drink) {
+        this.pizza = pizza;
+        this.drink = drink;
+    }
+
+    toString() {
+        return this.pizza + " Pizza, 3 GoatHorns, and a " + this.drink;
+    }
+};
+// noinspection ES6ConvertVarToLetConst
+var DoubleCombo = class {
+    constructor(pizza1, pizza2, drink1, drink2) {
+        this.pizza1 = pizza1;
+        this.pizza2 = pizza2;
+        this.drink1 = drink1;
+        this.drink2 = drink2;
+    }
+    toString() {
+        let pizzaStr;
+        if (this.pizza1 === this.pizza2) {
+            pizzaStr = "2 " + this.pizza1 + " Pizzas,";
+        } else {
+            pizzaStr = "1 " + this.pizza1 + " Pizza, 1 " + this.pizza2 + " Pizza,"
+        }
+        let drinkStr;
+        if (this.drink1 === this.drink2) {
+            drinkStr = "and 2 " + this.drink1 + "s";
+        } else {
+            drinkStr = "a " + this.drink1 + ", and a " + this.drink2;
+        }
+        return pizzaStr + " 6 GoatHorns, " + drinkStr;
+    }
+}
+// noinspection ES6ConvertVarToLetConst
+var Order = class {
+    sc = [];
+    dc = [];
+    alc_p = [];
+    alc_h = [];
+    alc_d = [];
+    constructor(temp) {
+        if (temp === null) return;
+        for (let i = 0; i < temp.sc.length; i++) {
+            this.addSC(new SingleCombo(temp.sc[i].pizza, temp.sc[i].drink));
+        }
+        for (let i = 0; i < temp.dc.length; i++) {
+            this.addDC(new DoubleCombo(temp.dc[i].pizza1, temp.dc[i].pizza2, temp.dc[i].drink1, temp.dc[i].drink2));
+        }
+        this.alc_p = temp.alc_p;
+        this.alc_h = temp.alc_h;
+        this.alc_d = temp.alc_d;
+    }
+    addSC(single) {
+        this.sc.push(single);
+    }
+    addDC(double) {
+        this.dc.push(double);
+    }
+    addALCP(alcp) {
+        this.alc_p.push(alcp);
+    }
+    addALCH(alch) {
+        this.alc_h.push(alch);
+    }
+    addALCD(alcd) {
+        this.alc_d.push(alcd);
+    }
+    toString() {
+        let retStr = "";
+        // If order is empty
+        if (this.sc.length === 0 && this.dc.length === 0 && this.alc_p.length === 0 && this.alc_h.length === 0 && this.alc_d.length === 0) {
+            return "Nothing to see here...";
+        }
+        if (this.sc.length > 0 || this.dc.length > 0) {
+            retStr += "Combos:\n";
+        }
+        // Single Combos
+        if (this.sc.length > 0) {
+            for (let i = 0; i < this.sc.length; i++) {
+                retStr += this.sc[i].toString() + "\n";
+            }
+        }
+        // Double Combos
+        if (this.dc.length > 0) {
+            for (let i = 0; i < this.dc.length; i++) {
+                retStr += this.dc[i].toString() + "\n";
+            }
+        }
+        // A La Carte Items
+        if (this.alc_p.length > 0 || this.alc_h.length > 0 || this.alc_d.length > 0) {
+            if (this.sc.length > 0 || this.dc.length > 0) {
+                retStr += "\n";
+            }
+            retStr += "A La Carte:\n";
+            let counts = getALCCounts(this);
+            if (counts[0] > 0) retStr += (counts[0] + "x Pepperoni Pizza\n");
+            if (counts[1] > 0) retStr += (counts[1] + "x Margherita Pizza\n");
+            if (this.alc_h.length > 0) retStr += (this.alc_h.length + "x 3 GoatHorns\n");
+            if (counts[2] > 0) retStr += (counts[2] + "x Water\n");
+            if (counts[3] > 0) retStr += (counts[3] + "x Dr. Pepper\n");
+            if (counts[4] > 0) retStr += (counts[4] + "x Mountain Dew\n");
+            if (counts[5] > 0) retStr += (counts[5] + "x Pink Lemonade");
+        }
+        return retStr;
+    }
+    toStringList() {
+        let retStr = "";
+        // If order is empty
+        if (this.sc.length === 0 && this.dc.length === 0 && this.alc_p.length === 0 && this.alc_h.length === 0 && this.alc_d.length === 0) {
+            return "Nothing to see here...";
+        }
+        // Single Combos
+        if (this.sc.length > 0) {
+            for (let i = 0; i < this.sc.length; i++) {
+                retStr += this.sc[i].toString() + "; ";
+            }
+        }
+        // Double Combos
+        if (this.dc.length > 0) {
+            for (let i = 0; i < this.dc.length; i++) {
+                retStr += this.dc[i].toString() + "; ";
+            }
+        }
+        // A La Carte Items
+        if (this.alc_p.length > 0 || this.alc_h.length > 0 || this.alc_d.length > 0) {
+            let counts = getALCCounts(this);
+            if (counts[0] > 0) retStr += (counts[0] + "x Pepperoni Pizza, ");
+            if (counts[1] > 0) retStr += (counts[1] + "x Margherita Pizza, ");
+            if (this.alc_h.length > 0) retStr += (this.alc_h.length + "x 3 GoatHorns, ");
+            if (counts[2] > 0) retStr += (counts[2] + "x Water, ");
+            if (counts[3] > 0) retStr += (counts[3] + "x Dr. Pepper, ");
+            if (counts[4] > 0) retStr += (counts[4] + "x Mountain Dew, ");
+            if (counts[5] > 0) retStr += (counts[5] + "x Pink Lemonade, ");
+        }
+        let total_length = retStr.length;
+        return retStr.substring(0, total_length - 2);
+    }
+    isEmpty() {
+        return (this.sc.length === 0 && this.dc.length === 0 && this.alc_p.length === 0 && this.alc_h.length === 0 && this.alc_d.length === 0);
+    }
+}
+
+function calculateDateTime1(datetime) {
+    let month = calculateMonth(datetime.substring(4, 7));
+    let day = datetime.substring(8, 10);
+    let year = datetime.substring(11, 15);
+    let date = year + "-" + month + "-" + day;
+    let time = datetime.substring(16, 24);
+    return date + "T" + time;
+}
+
+function calculateDateTime2(time1) {
+    // FUNCTION DOES NOT HANDLE ROLLING OVER INTO THE NEXT DAY
+    let minute = parseInt(time1.substring(14, 16));
+    let hour = parseInt(time1.substring(11, 13));
+    minute += 15;
+    if (minute > 59) {
+        hour++;
+        minute -= 60;
+    }
+    let minuteStr = minute.toString();
+    if (minute === 0) minuteStr += "0";
+    return time1.substring(0, 11) + hour + ":" + minuteStr + time1.substring(16);
+}
+
+function calculateMonth(str) {
+    if (str === "Jan") return "01";
+    else if (str === "Feb") return "02";
+    else if (str === "Mar") return "03";
+    else if (str === "Apr") return "04";
+    else if (str === "May") return "05";
+    else if (str === "Jun") return "06";
+    else if (str === "Jul") return "07";
+    else if (str === "Aug") return "08";
+    else if (str === "Sep") return "09";
+    else if (str === "Oct") return "10";
+    else if (str === "Nov") return "11";
+    else if (str === "Dec") return "12";
+}
+
 function clearPizzaSelections(pizzas) {
     for (let i = 0; i < pizzas.length; i++) {
         if (pizzas[i].classList.contains("pizza-selected")) {
@@ -23,6 +205,22 @@ function closeColl(content, image) {
     clearPizzaSelections(pizzas);
     resetDrinks();
     image.setAttribute("style","background-image:url(\"/images/chevron-down.svg\")");
+}
+
+function createEvent(dt1, dt2, order, price) {
+    return {
+        'summary': 'This is the event',
+        'location': '221 W 2230 N, Provo, UT 84604',
+        'description': order + ". Price: $" + price,
+        'start': {
+            'dateTime': dt1,
+            'timeZone': 'America/Phoenix'
+        },
+        'end': {
+            'dateTime': dt2,
+            'timeZone': 'America/Phoenix'
+        }
+    };
 }
 
 function decrement(qty) {
@@ -146,6 +344,27 @@ function fancyRemove(element) {
             displayEmptyList();
         }
     }, (t * 11) + 1);
+}
+
+function getALCCounts(order) {
+    let pep, marg, water, drp, dew, lemon;
+    pep = 0;
+    marg = 0;
+    water = 0;
+    drp = 0;
+    dew = 0;
+    lemon = 0;
+    for (let i = 0; i < order.alc_p.length; i++) {
+        if (order.alc_p[i] === "Pepperoni") pep++;
+        if (order.alc_p[i] === "Margherita") marg++;
+    }
+    for (let i = 0; i < order.alc_d.length; i++) {
+        if (order.alc_d[i] === "Water") water++;
+        if (order.alc_d[i] === "Dr. Pepper") drp++;
+        if (order.alc_d[i] === "Mountain Dew") dew++;
+        if (order.alc_d[i] === "Pink Lemonade") lemon++;
+    }
+    return [pep, marg, water, drp, dew, lemon];
 }
 
 function gotoCheckout() {
