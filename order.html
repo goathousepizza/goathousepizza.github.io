@@ -196,7 +196,7 @@
                         QTY:
                         <div class="qty-selector order-border">
                             <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
-                            <span id="qty-pep" data-bind="text: qty" class="qty">0</span>
+                            <span id="qty-pep" data-bind="text: qty" class="qty"></span>
                             <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
                         </div>
                     </div>
@@ -212,7 +212,7 @@
                         QTY:
                         <div class="qty-selector order-border">
                             <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
-                            <span id="qty-marg" class="qty">0</span>
+                            <span id="qty-marg" class="qty"></span>
                             <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
                         </div>
                     </div>
@@ -228,7 +228,7 @@
                         QTY:
                         <div class="qty-selector order-border">
                             <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
-                            <span id="qty-horns" class="qty">0</span>
+                            <span id="qty-horns" class="qty"></span>
                             <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
                         </div>
                     </div>
@@ -239,7 +239,7 @@
                     Add Water...
                     <div class="qty-selector">
                         <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
-                        <span id="qty-water" class="qty">0</span>
+                        <span id="qty-water" class="qty"></span>
                         <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
                     </div>
                 </div>
@@ -247,7 +247,7 @@
                     Add Dr. Pepper...
                     <div class="qty-selector">
                         <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
-                        <span id="qty-drp" class="qty">0</span>
+                        <span id="qty-drp" class="qty"></span>
                         <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
                     </div>
                 </div>
@@ -255,7 +255,7 @@
                     Add Mountain Dew...
                     <div class="qty-selector">
                         <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
-                        <span id="qty-dew" class="qty">0</span>
+                        <span id="qty-dew" class="qty"></span>
                         <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
                     </div>
                 </div>
@@ -263,7 +263,7 @@
                     Add Pink Lemonade...&emsp;
                     <div class="qty-selector">
                         <img data-bind="click: decreaseQuantity" src="images/minus-solid.svg" class="qty-minus" style="height: 15px" alt="No image.">
-                        <span id="qty-lem" class="qty">0</span>
+                        <span id="qty-lem" class="qty"></span>
                         <img data-bind="click: increaseQuantity" src="images/plus-solid.svg" class="qty-plus" style="height: 15px" alt="No image.">
                     </div>
                 </div>
@@ -356,6 +356,16 @@
 </script>
 <script>
     // HANDLE QUANTITY COUNTERS
+    // Set values
+    const currCt = getALCCounts(order_all);
+    document.getElementById("qty-pep").innerHTML = currCt[0].toString();
+    document.getElementById("qty-marg").innerHTML = currCt[1].toString();
+    document.getElementById("qty-horns").innerHTML = order_all.alc_h.length.toString();
+    document.getElementById("qty-water").innerHTML = currCt[2].toString();
+    document.getElementById("qty-drp").innerHTML = currCt[3].toString();
+    document.getElementById("qty-dew").innerHTML = currCt[4].toString();
+    document.getElementById("qty-lem").innerHTML = currCt[5].toString();
+    // Handle value changes
     const minuses = document.getElementsByClassName("qty-minus");
     const pluses = document.getElementsByClassName("qty-plus");
     for (let i = 0; i < minuses.length; i++) {
