@@ -17,11 +17,11 @@ const event = {
     'location': '800 Howard St., San Francisco, CA 94103',
     'description': 'Customer\'s order will go here',
     'start': {
-        'dateTime': '2022-08-02T20:00:00-07:00',
+        'dateTime': '2022-08-22T20:00:00-07:00',
         'timeZone': 'America/Phoenix'
     },
     'end': {
-        'dateTime': '2022-08-02T20:15:00-07:00',
+        'dateTime': '2022-08-22T20:15:00-07:00',
         'timeZone': 'America/Phoenix'
     }
 };
@@ -41,10 +41,10 @@ app.get('/', (req, res) => {
         auth: jwtClient
     });
 
-    calendar.events.insert({
+    /*calendar.events.insert({
         'calendarId': GOOGLE_CALENDAR_ID,
         'resource': event
-    });
+    });*/
 
     calendar.events.list({
         calendarId: GOOGLE_CALENDAR_ID,

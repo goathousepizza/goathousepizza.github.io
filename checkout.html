@@ -44,6 +44,9 @@
 <script type="text/javascript" src="script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="global.js"></script>
 <script>
     // HANDLE THE RESIZING BASED ON SCREEN WIDTH
     resizeCheckout();
@@ -83,17 +86,89 @@
         }
     });
 </script>
-<script>
+<script type="module">
     // HANDLE THE SUBMISSION OF THE ORDER
     document.getElementById("finish").addEventListener("click", function () {
-        console.log("finishing...");
-        console.log(order_all);
         let dt1 = calculateDateTime1(datetime[0].toString());
         let dt2 = calculateDateTime2(dt1);
         const event = createEvent(dt1, dt2, order_all.toStringList(), price_total);
-        console.log(event);
+        // at this point, the event is correctly assembled
         // add the event to calendar
+
+        fetch('https://goathousepizza.azurewebsites.net/api/GHP-HttpTrigger', {
+           body: JSON.stringify(event)
+        });
+
+        /*const GOOGLE_PRIVATE_KEY = gapiObj.private_key.trim();
+        const GOOGLE_CLIENT_EMAIL = gapiObj.client_email;
+        const GOOGLE_PROJECT_NUMBER = "668492908459";
+        const GOOGLE_CALENDAR_ID = "prattnj@gmail.com";
+        const SCOPES = 'https://www.googleapis.com/auth/calendar';
+        const URL = "https://www.googleapis.com/calendar/v3/calendars/prattnj@gmail.com/events";*/
+
+
+        // console.log(GOOGLE_PRIVATE_KEY);
+
+        // OPTION B: JS fetch function to make API calls, however, its strings cannot contain the private key's newline characters
+        /*fetch("URL", {
+            method: "get",
+            headers: {
+                Authorization: "Bearer " + GOOGLE_PRIVATE_KEY
+            }
+        })
+            .then(res => res.json())
+            .then(json => console.log(json))
+            .catch(error => console.log(error));*/
+
+        // OPTION C: Importing a node.js module called googleapis, but Chrome returning an error with import statement syntax
+        // this option likely not possible, as there must be a web server running to use modules
+
+        // OPTION D: Using Google's gapi.client.request function (https://github.com/google/google-api-javascript-client/blob/master/docs/reference.md)
+        /*gapi.client.request("URL", {
+
+        })*/
+
+        // OPTION E: JS Axios API (similar to fetch)
+        /*axios.get(URL)
+            .then(data => console.log(data))
+            .catch(err => console.log(err));*/
+
+        // OPTION F: Ajax
+        /*const http = new XMLHttpRequest();
+        http.open("GET", URL);
+        http.send();
+        http.onreadystatechange = (e) => {
+            console.log(http.responseText)
+        }*/
+
     })
+</script>
+<script>
+    // OPTION A: Code provided by Google: https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
+    // Probably won't work, gapi.client.init only has property 'apiKey' which is different from what the calendar API needs for credentials
+    /*function start() {
+        // 2. Initialize the JavaScript client library.jwt
+        gapi.client.init({
+            'apiKey': gapiObj.private_key,
+            // clientId and scope are optional if auth is not required.
+            /!*'clientId': gapiObj.client_id,
+            'scope': 'https://www.googleapis.com/auth/calendar',*!/
+        }).then(function() {
+            console.log("hello");
+            // 3. Initialize and make the API request.
+            return gapi.client.request({
+                'path': 'https://www.googleapis.com/calendar/v3/calendars/prattnj@gmail.com',
+            })
+        }).then(function(response) {
+            console.log("hello");
+            console.log(response.result);
+        }, function(reason) {
+            console.log('Error: ' + reason.result.error.message);
+        });
+    }
+    // 1. Load the JavaScript client library.
+    gapi.load('client', start);*/
+
 </script>
 
 </body>

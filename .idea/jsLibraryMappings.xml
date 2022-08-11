@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{api, flatpickr, font-awesome, jquery, knockout-3.4.0}" />
+    <file url="PROJECT" libraries="{api, axios, flatpickr, font-awesome, jquery, knockout-3.4.0}" />
   </component>
 </project>

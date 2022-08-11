@@ -209,16 +209,18 @@ function closeColl(content, image) {
 
 function createEvent(dt1, dt2, order, price) {
     return {
-        'summary': 'This is the event',
-        'location': '221 W 2230 N, Provo, UT 84604',
-        'description': order + ". Price: $" + price,
-        'start': {
-            'dateTime': dt1,
-            'timeZone': 'America/Phoenix'
-        },
-        'end': {
-            'dateTime': dt2,
-            'timeZone': 'America/Phoenix'
+        "event": {
+            "summary": "This is the event",
+            "location": "221 W 2230 N, Provo, UT 84604",
+            "description": order + ". Price: $" + price,
+            "start": {
+                "dateTime": dt1,
+                "timeZone": "America/Phoenix"
+            },
+            "end": {
+                "dateTime": dt2,
+                "timeZone": "America/Phoenix"
+            }
         }
     };
 }
