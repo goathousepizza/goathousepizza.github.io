@@ -309,6 +309,12 @@
 
 <script type="text/javascript" src="script.js"></script>
 <script>
+    // HANDLE THE ORDER OBJECT
+    // The one and only order to ever be declared (on this page, another one is declared in checkout.html)
+    let order_temp = JSON.parse(sessionStorage.getItem("order"));
+    let order_all = new Order(order_temp);
+</script>
+<script>
     // HANDLE THE RESIZING BASED ON SCREEN WIDTH
     resizeOrder();
     window.onresize = function() {resizeOrder()};
@@ -321,6 +327,7 @@
 
     for (let i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function() {
+            updateQtys();
             const content = this.nextElementSibling;
             let image = this.lastElementChild;
             // If it is open, close it
@@ -357,14 +364,7 @@
 <script>
     // HANDLE QUANTITY COUNTERS
     // Set values
-    const currCt = getALCCounts(order_all);
-    document.getElementById("qty-pep").innerHTML = currCt[0].toString();
-    document.getElementById("qty-marg").innerHTML = currCt[1].toString();
-    document.getElementById("qty-horns").innerHTML = order_all.alc_h.length.toString();
-    document.getElementById("qty-water").innerHTML = currCt[2].toString();
-    document.getElementById("qty-drp").innerHTML = currCt[3].toString();
-    document.getElementById("qty-dew").innerHTML = currCt[4].toString();
-    document.getElementById("qty-lem").innerHTML = currCt[5].toString();
+    updateQtys();
     // Handle value changes
     const minuses = document.getElementsByClassName("qty-minus");
     const pluses = document.getElementsByClassName("qty-plus");
@@ -377,12 +377,7 @@
         })
     }
 </script>
-<script>
-    // HANDLE THE ORDER OBJECT
-    // The one and only order to ever be declared (on this page, another one is declared in checkout.html)
-    let order_temp = JSON.parse(sessionStorage.getItem("order"));
-    let order_all = new Order(order_temp);
-</script>
+
 <script>
     // HANDLE THE CLICKING OF ADD TO ORDER BUTTONS
     // SINGLE COMBO

@@ -200,7 +200,7 @@ function clickX(x, type, i) {
 }
 
 function closeColl(content, image) {
-    if (content.id === "alc") resetQtys();
+    if (content.id === "alc") updateQtys();
     content.style.maxHeight = null;
     clearPizzaSelections(pizzas);
     resetDrinks();
@@ -406,11 +406,20 @@ function resetDrinks() {
     }
 }
 
-function resetQtys() {
-    const qtys = document.getElementsByClassName("qty");
+function updateQtys() {
+    /*const qtys = document.getElementsByClassName("qty");
     for (let i = 0; i < qtys.length; i++) {
         qtys[i].innerText = 0;
-    }
+    }*/
+    const currCt = getALCCounts(order_all);
+    console.log(currCt);
+    document.getElementById("qty-pep").innerHTML = currCt[0].toString();
+    document.getElementById("qty-marg").innerHTML = currCt[1].toString();
+    document.getElementById("qty-horns").innerHTML = order_all.alc_h.length.toString();
+    document.getElementById("qty-water").innerHTML = currCt[2].toString();
+    document.getElementById("qty-drp").innerHTML = currCt[3].toString();
+    document.getElementById("qty-dew").innerHTML = currCt[4].toString();
+    document.getElementById("qty-lem").innerHTML = currCt[5].toString();
 }
 
 function resizeCheckout() {
