@@ -270,7 +270,7 @@
             </div>
             <div class="drink-order" style="justify-content:center!important;">
                 <div id="add-alc" class="add-order">
-                    ADD TO ORDER
+                    UPDATE ORDER
                 </div>
             </div>
         </div>
@@ -344,7 +344,7 @@
                 }
                 // Open the one that is clicked on
                 if (content.id === "view-order") {
-                    displayList();
+                    displayList(order_all);
                 }
                 content.style.maxHeight = content.scrollHeight + "px";
                 image.setAttribute("style","background-image:url(\"/images/chevron-up.svg\")");
@@ -377,7 +377,6 @@
         })
     }
 </script>
-
 <script>
     // HANDLE THE CLICKING OF ADD TO ORDER BUTTONS
     // SINGLE COMBO
@@ -450,6 +449,7 @@
 
     // A LA CARTE
     document.getElementById("add-alc").addEventListener("click", function () {
+        clearALCitems(order_all);
         let pep, marg, horns, water, drp, dew, lem;
         pep = document.getElementById("qty-pep").innerText;
         marg = document.getElementById("qty-marg").innerText;
@@ -458,10 +458,6 @@
         drp = document.getElementById("qty-drp").innerText;
         dew = document.getElementById("qty-dew").innerText;
         lem = document.getElementById("qty-lem").innerText;
-        if (pep === "0" && marg === "0" && horns === "0" && water === "0" && drp === "0" && dew === "0" && lem === "0") {
-            notify("Nothing to add.");
-            return;
-        }
         for (let i = 0; i < pep; i++) {
             order_all.addALCP("Pepperoni");
         }
@@ -483,7 +479,7 @@
         for (let i = 0; i < lem; i++) {
             order_all.addALCD("Pink Lemonade");
         }
-        notify("Added to order.");
+        notify("Order updated.");
         updateSessionOrder();
         closeColl(this.parentElement.parentElement, this.parentElement.parentElement.previousElementSibling.lastElementChild);
     })

@@ -27,26 +27,34 @@
 
     <div id="title" onclick="console.log(order_all);console.log(price_total);" class="bg-header"><b>CHECKOUT</b></div>
 
-    <div id="calendar-box" class="calendar-box">
-        <div>
-            <span>Pickup:</span>
-            <label for="date1"></label><input id="date1" placeholder="Select date and time..." data-input />
+    <div class="checkout-content">
+
+        <div id="calendar-box" class="checkout-content-box">
+            <div>
+                <span>Pickup:</span>
+                <label for="date1"></label><input id="date1" placeholder="Select date and time..." data-input />
+            </div>
+            <p id="pickup-desc" style="margin:auto">Pickup at 221 W 2230 N #1, Provo, UT</p>
         </div>
-        <p id="pickup-desc" style="margin:auto">Pickup at 221 W 2230 N #1, Provo, UT</p>
+
+        <div class="checkout-content-box">
+            <div>
+
+            </div>
+        </div>
+
+        <div id="finish" class="test-button" style="margin: 5px">TEST CALENDAR</div>
     </div>
 
 </div>
 
 <footer class="footer">
-    <p>Copyright © 2022 <span id="finish">GoatHouse</span> Brick Oven Pizza - All Rights <span onclick="window.location.href='order.html'">Reserved</span>.<br><a href="index.html">Return Home</a></p>
+    <p>Copyright © 2022 <span>GoatHouse</span> Brick Oven Pizza - All Rights <span onclick="window.location.href='order.html'">Reserved</span>.<br><a href="index.html">Return Home</a></p>
 </footer>
 
 <script type="text/javascript" src="script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-<script src="https://apis.google.com/js/api.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="global.js"></script>
 <script>
     // HANDLE THE RESIZING BASED ON SCREEN WIDTH
     resizeCheckout();
@@ -54,13 +62,19 @@
 </script>
 <script>
     // UNPACK ORDER OBJECT FROM order.html AND HANDLE PRICES
-    let order_all = new Order(JSON.parse(sessionStorage.order));
-    let price_sc = 8;
-    let price_dc = 15;
-    let price_alc_p = 6;
-    let price_alc_h = 3;
-    let price_alc_d = 1;
-    let price_total = ((order_all.sc.length * price_sc) + (order_all.dc.length * price_dc) + (order_all.alc_p.length * price_alc_p) + (order_all.alc_h.length * price_alc_h) + (order_all.alc_d.length * price_alc_d));
+    let price_total;
+    try {
+        let order_all = new Order(JSON.parse(sessionStorage.order));
+        let price_sc = 8;
+        let price_dc = 15;
+        let price_alc_p = 6;
+        let price_alc_h = 3;
+        let price_alc_d = 1;
+        price_total = ((order_all.sc.length * price_sc) + (order_all.dc.length * price_dc) + (order_all.alc_p.length * price_alc_p) + (order_all.alc_h.length * price_alc_h) + (order_all.alc_d.length * price_alc_d));
+    } catch (error) {
+        console.log(error);
+    }
+
 </script>
 <script>
     // HANDLE CALENDAR
@@ -91,13 +105,28 @@
     document.getElementById("finish").addEventListener("click", function () {
         let dt1 = calculateDateTime1(datetime[0].toString());
         let dt2 = calculateDateTime2(dt1);
-        const event = createEvent(dt1, dt2, order_all.toStringList(), price_total);
-        // at this point, the event is correctly assembled
+        //const event = createEvent(dt1, dt2, order_all.toStringList(), price_total);
+        const testEvent = {
+            "event": {
+                "summary": "GoatHouse Pizza Order",
+                "location": "221 W 2230 N, Provo, UT 84604",
+                "description": "Name: Benny Blanco\nSMS: 678-999-8212\nOrder: 1x Pepperoni, 2x Mountain Dew\nPrice: $8",
+                "start": {
+                    "dateTime": dt1,
+                    "timeZone": "America/Denver"
+                },
+                "end": {
+                    "dateTime": dt2,
+                    "timeZone": "America/Denver"
+                }
+            }
+        }
+        // at this point, the event object is correctly assembled
 
         // Send an HTTP POST request to my Azure account containing the trigger function, which has credentials and pushes the event to the calendar
         fetch('https://goathousepizza.azurewebsites.net/api/GHP-HttpTrigger', {
             method: 'POST',
-            body: JSON.stringify(event)
+            body: JSON.stringify(testEvent)
         });
     })
 </script>
@@ -107,5 +136,5 @@
 
 <!--
 TODO: input for Name and Phone Number => add these to the event object
-TODO: set up SMS API for text reminders
+TODO: set up SMS API for text reminders?
 -->

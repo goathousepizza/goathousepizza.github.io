@@ -180,6 +180,12 @@ function calculateMonth(str) {
     else if (str === "Dec") return "12";
 }
 
+function clearALCitems(order) {
+    order.alc_p.splice(0, order.alc_p.length);
+    order.alc_h.splice(0, order.alc_h.length);
+    order.alc_d.splice(0, order.alc_d.length);
+}
+
 function clearPizzaSelections(pizzas) {
     for (let i = 0; i < pizzas.length; i++) {
         if (pizzas[i].classList.contains("pizza-selected")) {
@@ -234,6 +240,7 @@ function decrement(qty) {
 }
 
 function displayEmptyList() {
+    removeChildren(document.getElementById("order-list"));
     let div = document.createElement("div");
     div.innerHTML = "Nothing to see here...";
     div.style.textAlign = "center";
@@ -283,30 +290,30 @@ function displayItem(type, i) {
     document.getElementById("order-list").appendChild(div1);
 }
 
-function displayList() {
+function displayList(order) {
+    console.log(order);
     // Reset by removing what is already being displayed
     let order_list = document.getElementById("order-list");
-    if (order_all.isEmpty()) {
-        if (order_list.children.length < 1) {
-            displayEmptyList();
-        }
+    if (order.isEmpty()) {
+        console.log("here");
+        displayEmptyList();
         return;
     }
     removeChildren(order_list);
     // Add everything to the parent div one at a time
-    for (let i = 0; i < order_all.sc.length; i++) {
+    for (let i = 0; i < order.sc.length; i++) {
         displayItem(0, i);
     }
-    for (let i = 0; i < order_all.dc.length; i++) {
+    for (let i = 0; i < order.dc.length; i++) {
         displayItem(1, i);
     }
-    for (let i = 0; i < order_all.alc_p.length; i++) {
+    for (let i = 0; i < order.alc_p.length; i++) {
         displayItem(2, i);
     }
-    for (let i = 0; i < order_all.alc_h.length; i++) {
+    for (let i = 0; i < order.alc_h.length; i++) {
         displayItem(3, i);
     }
-    for (let i = 0; i < order_all.alc_d.length; i++) {
+    for (let i = 0; i < order.alc_d.length; i++) {
         displayItem(4, i);
     }
     // Add the checkout button
@@ -407,12 +414,7 @@ function resetDrinks() {
 }
 
 function updateQtys() {
-    /*const qtys = document.getElementsByClassName("qty");
-    for (let i = 0; i < qtys.length; i++) {
-        qtys[i].innerText = 0;
-    }*/
     const currCt = getALCCounts(order_all);
-    console.log(currCt);
     document.getElementById("qty-pep").innerHTML = currCt[0].toString();
     document.getElementById("qty-marg").innerHTML = currCt[1].toString();
     document.getElementById("qty-horns").innerHTML = order_all.alc_h.length.toString();
@@ -427,6 +429,9 @@ function resizeCheckout() {
         document.getElementById("title").style.fontSize = "30px";
         document.getElementById("pickup-desc").style.fontSize = "13px";
         document.getElementById("calendar-box").style.width = "80%";
+        for (let i = 0; i < document.getElementsByClassName("checkout-content-box").length; i++) {
+
+        }
     } else {
         document.getElementById("title").style.fontSize = "48px";
         document.getElementById("pickup-desc").style.fontSize = "20px";
