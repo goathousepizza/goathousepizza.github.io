@@ -14,5 +14,6 @@
     <orderEntry type="library" name="flatpickr" level="application" />
     <orderEntry type="library" name="api" level="application" />
     <orderEntry type="library" name="axios" level="application" />
+    <orderEntry type="library" name="jquery.timepicker" level="application" />
   </component>
 </module>

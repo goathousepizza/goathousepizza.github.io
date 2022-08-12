@@ -71,6 +71,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: auto;
 }
 
 .checkout-content-box {
@@ -82,6 +83,7 @@
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .coll-content {
@@ -392,6 +394,7 @@
     padding: 20px;
     border-radius: 5px;
     background-color: rgba(200, 200, 200, .7);
+    margin: 5px;
 }
 
 .test-button:hover {

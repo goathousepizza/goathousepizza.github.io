@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
     <link rel="icon" href="/images/favicon.png">
+    <script type="text/javascript" src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
     <style>
         body, html {
             height: 100%;
@@ -27,23 +29,13 @@
 
     <div id="title" onclick="console.log(order_all);console.log(price_total);" class="bg-header"><b>CHECKOUT</b></div>
 
-    <div class="checkout-content">
+    <div id="checkout-main" class="checkout-content">
 
         <div id="calendar-box" class="checkout-content-box">
-            <div>
-                <span>Pickup:</span>
-                <label for="date1"></label><input id="date1" placeholder="Select date and time..." data-input />
-            </div>
-            <p id="pickup-desc" style="margin:auto">Pickup at 221 W 2230 N #1, Provo, UT</p>
+            <div id="flatpickr-test"></div>
         </div>
 
-        <div class="checkout-content-box">
-            <div>
-
-            </div>
-        </div>
-
-        <div id="finish" class="test-button" style="margin: 5px">TEST CALENDAR</div>
+        <div id="finish" class="test-button">TEST CALENDAR</div>
     </div>
 
 </div>
@@ -52,9 +44,6 @@
     <p>Copyright © 2022 <span>GoatHouse</span> Brick Oven Pizza - All Rights <span onclick="window.location.href='order.html'">Reserved</span>.<br><a href="index.html">Return Home</a></p>
 </footer>
 
-<script type="text/javascript" src="script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <script>
     // HANDLE THE RESIZING BASED ON SCREEN WIDTH
     resizeCheckout();
@@ -80,11 +69,13 @@
     // HANDLE CALENDAR
     let datetime;
     // noinspection JSUnusedGlobalSymbols
-    $("#date1").flatpickr({
+    flatpickr(document.getElementById("flatpickr-test"), {
+        inline: true,
+        disableMobile: true,
         enableTime: true,
-        minTime: "17:00",
-        maxTime: "21:00",
-        minuteIncrement: "15",
+        minTime: '17:00',
+        maxTime: '21:00',
+        minuteIncrement: '15',
         dateFormat: "m-d-Y",
         minDate: "today",
         "disable": [
@@ -92,10 +83,8 @@
                 return (date.getDay() === 0 || date.getDay() === 1 || date.getDay() === 2 || date.getDay() === 3 || date.getDay() === 4);  // disable weekends
             }
         ],
-        "locale": {
-            "firstDayOfWeek": 0 // set start day of week to Sunday
-        },
         onClose: function (dateTime) {
+            console.log(dateTime);
             datetime = dateTime;
         }
     });

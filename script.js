@@ -427,15 +427,12 @@ function updateQtys() {
 function resizeCheckout() {
     if (window.innerWidth < 604) {
         document.getElementById("title").style.fontSize = "30px";
-        document.getElementById("pickup-desc").style.fontSize = "13px";
-        document.getElementById("calendar-box").style.width = "80%";
-        for (let i = 0; i < document.getElementsByClassName("checkout-content-box").length; i++) {
-
-        }
+        //document.getElementById("pickup-desc").style.fontSize = "13px";
+        document.getElementById("checkout-main").style.width = "80%";
     } else {
         document.getElementById("title").style.fontSize = "48px";
-        document.getElementById("pickup-desc").style.fontSize = "20px";
-        document.getElementById("calendar-box").style.width = "50%";
+        //document.getElementById("pickup-desc").style.fontSize = "20px";
+        document.getElementById("checkout-main").style.width = "50%";
     }
 }
 
