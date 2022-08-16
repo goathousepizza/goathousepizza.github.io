@@ -4,9 +4,11 @@ var SingleCombo = class {
         this.pizza = pizza;
         this.drink = drink;
     }
-
     toString() {
         return this.pizza + " Pizza, 3 GoatHorns, and a " + this.drink;
+    }
+    toStringCalendar() {
+        return "Single Combo (" + this.pizza + ", " + this.drink + ")";
     }
 };
 // noinspection ES6ConvertVarToLetConst
@@ -31,6 +33,9 @@ var DoubleCombo = class {
             drinkStr = "a " + this.drink1 + ", and a " + this.drink2;
         }
         return pizzaStr + " 6 GoatHorns, " + drinkStr;
+    }
+    toStringCalendar() {
+        return "Double Combo (" + this.pizza1 + ", " + this.pizza2 + ", " + this.drink1 + ", " + this.drink2 + ")";
     }
 }
 // noinspection ES6ConvertVarToLetConst
@@ -105,7 +110,7 @@ var Order = class {
         }
         return retStr;
     }
-    toStringList() {
+    toStringCalendar() {
         let retStr = "";
         // If order is empty
         if (this.sc.length === 0 && this.dc.length === 0 && this.alc_p.length === 0 && this.alc_h.length === 0 && this.alc_d.length === 0) {
@@ -114,13 +119,13 @@ var Order = class {
         // Single Combos
         if (this.sc.length > 0) {
             for (let i = 0; i < this.sc.length; i++) {
-                retStr += this.sc[i].toString() + "; ";
+                retStr += this.sc[i].toStringCalendar() + "; ";
             }
         }
         // Double Combos
         if (this.dc.length > 0) {
             for (let i = 0; i < this.dc.length; i++) {
-                retStr += this.dc[i].toString() + "; ";
+                retStr += this.dc[i].toStringCalendar() + "; ";
             }
         }
         // A La Carte Items
@@ -142,17 +147,18 @@ var Order = class {
     }
 }
 
-function calculateDateTime1(datetime) {
-    let month = calculateMonth(datetime.substring(4, 7));
+function calculateDateTime1(date, time) {
+    /*let month = calculateMonth(datetime.substring(4, 7));
     let day = datetime.substring(8, 10);
     let year = datetime.substring(11, 15);
     let date = year + "-" + month + "-" + day;
-    let time = datetime.substring(16, 24);
+    let time = datetime.substring(16, 24);*/
     return date + "T" + time;
 }
 
 function calculateDateTime2(time1) {
     // FUNCTION DOES NOT HANDLE ROLLING OVER INTO THE NEXT DAY
+    // MADE FOR 15-MINUTE EVENTS
     let minute = parseInt(time1.substring(14, 16));
     let hour = parseInt(time1.substring(11, 13));
     minute += 15;
@@ -163,21 +169,6 @@ function calculateDateTime2(time1) {
     let minuteStr = minute.toString();
     if (minute === 0) minuteStr += "0";
     return time1.substring(0, 11) + hour + ":" + minuteStr + time1.substring(16);
-}
-
-function calculateMonth(str) {
-    if (str === "Jan") return "01";
-    else if (str === "Feb") return "02";
-    else if (str === "Mar") return "03";
-    else if (str === "Apr") return "04";
-    else if (str === "May") return "05";
-    else if (str === "Jun") return "06";
-    else if (str === "Jul") return "07";
-    else if (str === "Aug") return "08";
-    else if (str === "Sep") return "09";
-    else if (str === "Oct") return "10";
-    else if (str === "Nov") return "11";
-    else if (str === "Dec") return "12";
 }
 
 function clearALCitems(order) {
@@ -213,19 +204,19 @@ function closeColl(content, image) {
     image.setAttribute("style","background-image:url(\"/images/chevron-down.svg\")");
 }
 
-function createEvent(dt1, dt2, order, price) {
+function createEvent(name, phone, dt1, dt2, order, price) {
+    let desc = "Name: " + name + "\nPhone: " + phone + "\nOrder: " + order.toStringCalendar() + "\nPrice: $" + price;
     return {
         "event": {
-            "summary": "This is the event",
-            "location": "221 W 2230 N, Provo, UT 84604",
-            "description": order + ". Price: $" + price,
+            "summary": "NEW ORDER",
+            "description": desc,
             "start": {
                 "dateTime": dt1,
-                "timeZone": "America/Phoenix"
+                "timeZone": "America/Denver"
             },
             "end": {
                 "dateTime": dt2,
-                "timeZone": "America/Phoenix"
+                "timeZone": "America/Denver"
             }
         }
     };
@@ -290,30 +281,28 @@ function displayItem(type, i) {
     document.getElementById("order-list").appendChild(div1);
 }
 
-function displayList(order) {
-    console.log(order);
+function displayList() {
     // Reset by removing what is already being displayed
     let order_list = document.getElementById("order-list");
-    if (order.isEmpty()) {
-        console.log("here");
+    if (order_all.isEmpty()) {
         displayEmptyList();
         return;
     }
     removeChildren(order_list);
     // Add everything to the parent div one at a time
-    for (let i = 0; i < order.sc.length; i++) {
+    for (let i = 0; i < order_all.sc.length; i++) {
         displayItem(0, i);
     }
-    for (let i = 0; i < order.dc.length; i++) {
+    for (let i = 0; i < order_all.dc.length; i++) {
         displayItem(1, i);
     }
-    for (let i = 0; i < order.alc_p.length; i++) {
+    for (let i = 0; i < order_all.alc_p.length; i++) {
         displayItem(2, i);
     }
-    for (let i = 0; i < order.alc_h.length; i++) {
+    for (let i = 0; i < order_all.alc_h.length; i++) {
         displayItem(3, i);
     }
-    for (let i = 0; i < order.alc_d.length; i++) {
+    for (let i = 0; i < order_all.alc_d.length; i++) {
         displayItem(4, i);
     }
     // Add the checkout button
@@ -399,6 +388,62 @@ function notify(str) {
     },2000);
 }
 
+function placeOrder(order, price) {
+    // Gather data and validate it
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let phone = document.getElementById("phone").value;
+    let date = document.getElementById("flatpickr").value;
+    let time = document.getElementById("time-select").value;
+    if (!fname || !lname || !phone || !date || time === "0") {
+        notify("Please fill out all fields.");
+        return;
+    }
+    if (!validatePhone(phone)) {
+        notify("Please enter a valid phone number.");
+        return;
+    }
+
+    // Create event and post it to goathousepizza@gmail.com's primary Google calendar
+    let fullname = fname + " " + lname;
+    let datetime1 = calculateDateTime1(date, time);
+    let datetime2 = calculateDateTime2(datetime1);
+    let event = createEvent(fullname, phone, datetime1, datetime2, order, price);
+    let success = true;
+    fetch('https://goathousepizza.azurewebsites.net/api/GHP-HttpTrigger', {
+        method: 'POST',
+        body: JSON.stringify(event)
+    }).then(r => console.log(r)).catch(function () {
+        success = false;
+        popup(success, datetime1);
+    });
+    if (!success) return;
+
+    // Show modal confirming order
+    popup(success, datetime1);
+}
+
+function popup(success, datetime) {
+    let dt = reverseDateTime(datetime)
+    let header;
+    let msg;
+    if (success) {
+        header = "Success!";
+        msg = "Order placed!\nPick up your order at 221 W 2230 N, Provo, UT at " + dt;
+    } else {
+        header = "An error occurred...";
+        msg = "There's been an error on our end, please call us to place your order. Sorry!"
+    }
+
+    document.getElementById("exampleModalLongTitle").innerHTML = header;
+    document.getElementById("modal-body").innerHTML = msg;
+    let modal = $("#exampleModalCenter");
+    modal.modal('show');
+    modal.on('hidden.bs.modal', function () {
+        window.location.replace('index.html');
+    })
+}
+
 function removeChildren(element) {
     if (element.children.length < 1) return;
     for (let i = element.children.length - 1; i > -1; i--) {
@@ -425,14 +470,12 @@ function updateQtys() {
 }
 
 function resizeCheckout() {
-    if (window.innerWidth < 604) {
+    if (window.innerWidth < 750) {
         document.getElementById("title").style.fontSize = "30px";
-        //document.getElementById("pickup-desc").style.fontSize = "13px";
         document.getElementById("checkout-main").style.width = "80%";
     } else {
         document.getElementById("title").style.fontSize = "48px";
-        //document.getElementById("pickup-desc").style.fontSize = "20px";
-        document.getElementById("checkout-main").style.width = "50%";
+        document.getElementById("checkout-main").style.width = "35%";
     }
 }
 
@@ -479,6 +522,31 @@ function resizeOrder() {
     }
 }
 
+function reverseDateTime(datetime) {
+    // FORMAT: "2022-08-20T19:30:00" => "7:30 PM on 8/20/2022"
+    let year = datetime.substring(0, 4);
+    let month = datetime.substring(5, 7);
+    let day = datetime.substring(8, 10);
+    let hour = datetime.substring(11, 13);
+    let minute = datetime.substring(14, 16);
+    let ampm = "AM";
+
+    if (month[0] === "0") month = month.substring(1);
+    if (day[0] === "0") day = day.substring(1);
+    if (hour[0] === "0") hour = hour.substring(1);
+    else if (hour > 12) {
+        hour-= 12;
+        ampm = "PM";
+    }
+
+    return hour + ":" + minute + " " + ampm + " on " + month + "/" + day + "/" + year;
+}
+
 function updateSessionOrder() {
     sessionStorage.order = JSON.stringify(order_all);
+}
+
+function validatePhone(number) {
+    let re = /^\+?[(]?\d{3}[)]?[-\s.]?\d{3}[-\s.]?\d{4}$/im;
+    return re.test(number);
 }
