@@ -55,7 +55,7 @@
 .bgimg {
     background-position: center;
     background-size: cover;
-    background-image: url("/images/dimmer.jpg");
+    background-image: url("/images/dimmer-min.jpg");
     min-height: 80%;
 }
 
@@ -206,7 +206,7 @@ label {
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    background-image: url("/images/transparent.png");
+    background-image: url("/images/transparent-min.png");
     height: 100%;
 }
 
