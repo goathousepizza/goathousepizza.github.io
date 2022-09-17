@@ -358,10 +358,14 @@ label {
 
 .select-p-content {
     display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
     align-items: center;
+    height: 80%;
 }
 
 .select-p-desc {
+    alignment: center;
     margin: 5px;
     width: 150px;
 }
@@ -374,6 +378,7 @@ label {
 
 .select-p-pic {
     margin: 5px;
+    width: 100%;
 }
 
 .selector-drink {

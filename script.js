@@ -102,11 +102,12 @@ var Order = class {
             let counts = getALCCounts(this);
             if (counts[0] > 0) retStr += (counts[0] + "x Pepperoni Pizza\n");
             if (counts[1] > 0) retStr += (counts[1] + "x Margherita Pizza\n");
+            if (counts[2] > 0) retStr += (counts[1] + "x Weekly Special Pizza\n");
             if (this.alc_h.length > 0) retStr += (this.alc_h.length + "x 3 GoatHorns\n");
-            if (counts[2] > 0) retStr += (counts[2] + "x Water\n");
-            if (counts[3] > 0) retStr += (counts[3] + "x Dr. Pepper\n");
-            if (counts[4] > 0) retStr += (counts[4] + "x Mountain Dew\n");
-            if (counts[5] > 0) retStr += (counts[5] + "x Pink Lemonade");
+            if (counts[3] > 0) retStr += (counts[2] + "x Water\n");
+            if (counts[4] > 0) retStr += (counts[3] + "x Dr. Pepper\n");
+            if (counts[5] > 0) retStr += (counts[4] + "x Mountain Dew\n");
+            if (counts[6] > 0) retStr += (counts[5] + "x Pink Lemonade");
         }
         return retStr;
     }
@@ -133,11 +134,12 @@ var Order = class {
             let counts = getALCCounts(this);
             if (counts[0] > 0) retStr += (counts[0] + "x Pepperoni Pizza, ");
             if (counts[1] > 0) retStr += (counts[1] + "x Margherita Pizza, ");
+            if (counts[2] > 0) retStr += (counts[1] + "x Weekly Special Pizza, ");
             if (this.alc_h.length > 0) retStr += (this.alc_h.length + "x 3 GoatHorns, ");
-            if (counts[2] > 0) retStr += (counts[2] + "x Water, ");
-            if (counts[3] > 0) retStr += (counts[3] + "x Dr. Pepper, ");
-            if (counts[4] > 0) retStr += (counts[4] + "x Mountain Dew, ");
-            if (counts[5] > 0) retStr += (counts[5] + "x Pink Lemonade, ");
+            if (counts[3] > 0) retStr += (counts[2] + "x Water, ");
+            if (counts[4] > 0) retStr += (counts[3] + "x Dr. Pepper, ");
+            if (counts[5] > 0) retStr += (counts[4] + "x Mountain Dew, ");
+            if (counts[6] > 0) retStr += (counts[5] + "x Pink Lemonade, ");
         }
         let total_length = retStr.length;
         return retStr.substring(0, total_length - 2);
@@ -345,9 +347,10 @@ function fancyRemove(element) {
 }
 
 function getALCCounts(order) {
-    let pep, marg, water, drp, dew, lemon;
+    let pep, marg, special, water, drp, dew, lemon;
     pep = 0;
     marg = 0;
+    special = 0;
     water = 0;
     drp = 0;
     dew = 0;
@@ -355,6 +358,7 @@ function getALCCounts(order) {
     for (let i = 0; i < order.alc_p.length; i++) {
         if (order.alc_p[i] === "Pepperoni") pep++;
         if (order.alc_p[i] === "Margherita") marg++;
+        if (order.alc_p[i] === "Weekly Special") special++;
     }
     for (let i = 0; i < order.alc_d.length; i++) {
         if (order.alc_d[i] === "Water") water++;
@@ -362,7 +366,7 @@ function getALCCounts(order) {
         if (order.alc_d[i] === "Mountain Dew") dew++;
         if (order.alc_d[i] === "Pink Lemonade") lemon++;
     }
-    return [pep, marg, water, drp, dew, lemon];
+    return [pep, marg, special, water, drp, dew, lemon];
 }
 
 function gotoCheckout() {
@@ -462,11 +466,12 @@ function updateQtys() {
     const currCt = getALCCounts(order_all);
     document.getElementById("qty-pep").innerHTML = currCt[0].toString();
     document.getElementById("qty-marg").innerHTML = currCt[1].toString();
+    document.getElementById("qty-special").innerHTML = currCt[2].toString();
     document.getElementById("qty-horns").innerHTML = order_all.alc_h.length.toString();
-    document.getElementById("qty-water").innerHTML = currCt[2].toString();
-    document.getElementById("qty-drp").innerHTML = currCt[3].toString();
-    document.getElementById("qty-dew").innerHTML = currCt[4].toString();
-    document.getElementById("qty-lem").innerHTML = currCt[5].toString();
+    document.getElementById("qty-water").innerHTML = currCt[3].toString();
+    document.getElementById("qty-drp").innerHTML = currCt[4].toString();
+    document.getElementById("qty-dew").innerHTML = currCt[5].toString();
+    document.getElementById("qty-lem").innerHTML = currCt[6].toString();
 }
 
 function resizeCheckout() {
